@@ -6,8 +6,8 @@
   }
 
 @keyframes borderBottomIn {
-  0%   { border-bottom: 0px solid rgb(255, 98, 0);}
-  100%   { border-bottom: 5px solid rgb(255, 98, 0);}
+  0%   { border-bottom: 0px solid rgb(255, 104, 104);}
+  100%   { border-bottom: 5px solid rgb(255, 104, 104);}
 }
 
 @-webkit-keyframes slide-left {
@@ -50,4 +50,17 @@
     -webkit-transform: translateX(100px);
             transform: translateX(100px);
   }
+}
+
+
+@keyframes animate-bg-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

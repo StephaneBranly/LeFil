@@ -1,3 +1,9 @@
+#numeros #numero_before{
+    padding-top: 50px;
+   font-family: cursive;
+   color:#ececec;
+}
+
 #numeros .numero{
     display: inline-block;
     margin: 5% auto;
@@ -71,13 +77,9 @@
     transform: rotate3d(0,1,0,-90deg);
 }
 
-#numeros .numero .cover svg{
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    margin-top: -100px;
-    margin-left: -110px;
+#numeros .numero .cover img{
     width: 210px;
+    height: 297px;
 }
 
 #numeros .numero .cover .num-down{

@@ -7,7 +7,8 @@
     <head>
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
-            $nom_page='Numéros';
+            $id_numero = secure_get('numero');
+            $nom_page="Numéro $id_numero";
             // TODO : ADD DESCRIPTION HERE
             $description_page="TODO";
             include_once("../lib/meta.php");
@@ -20,7 +21,7 @@
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
-        numeros();
+        read_numero($id_numero);
     ?>
     </body>
 	

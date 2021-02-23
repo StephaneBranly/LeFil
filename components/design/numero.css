@@ -1,0 +1,60 @@
+#display_numero{
+    margin-top: 50px;
+    background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);
+    border-radius: 15px;
+    width: 80%;
+    height: auto;
+    display:inline-block;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px #4d4d4d;
+    vertical-align: top;
+}
+
+#display_numero #title{
+    text-align: left;
+    padding-left: 20px;
+    background: linear-gradient(-45deg,#ad3b3b, #e66a6a);
+	background-size: 200% 200%;
+	animation: animate-bg-gradient 15s ease infinite;
+    font-size: 50px;
+    font-family: cursive;
+    color:#26292d;
+    border-bottom: 2px solid #26292d;
+}
+#display_numero #left_side{
+    padding-top: 15px;
+    width: 30%;
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+}
+#display_numero #left_side .article{
+    font-family: cursive;
+    color: #26292d;
+    padding:10px;
+    border-bottom: 1px solid #26292d;
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    background-color: #ffffff;
+    transition: all 0.1s;
+}
+#display_numero #left_side .article.active{
+    border-right: 5px solid rgb(255, 104, 104);
+    border-left: 5px solid rgb(255, 104, 104);
+    transform: translateX(10px);
+}
+#display_numero #left_side .article:hover{
+    border-bottom: 1px solid #26292d;
+    border-left: 5px solid #26292d;
+    border-right: 5px solid #26292d;
+    cursor: pointer;
+    transform: translateX(10px);
+}
+#display_numero #right_side{
+    display: inline-block;
+    padding:50px;
+    text-align: justify;
+    width: 60%;
+    height: auto;
+}

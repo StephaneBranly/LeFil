@@ -16,7 +16,7 @@
         <meta property='og:image'  content='https://assos.utc.fr/lefil/ressources/images/logo.png'/>
 	</head>
     <?php include_once("../components/components_include.php");?>
-	<body>
+	<body id='root'>
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();

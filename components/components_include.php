@@ -14,12 +14,15 @@
 <link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/notifications.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/numero.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numeros.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
     include_once("../components/header.php");
     include_once("../components/notifications.php");
+    include_once("../components/numero.php");
     include_once("../components/numeros.php");
 ?>
 
+<script type="text/javascript" src="../components/services/article.js"></script>
 <script type="text/javascript" src="../components/services/notifications.js"></script>
