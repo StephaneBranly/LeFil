@@ -1,0 +1,5 @@
+DirectoryIndex ./pages/index.php
+ErrorDocument 404 /pages/error404.php 
+
+RewriteEngine on
+RewriteRule ^index/?$ pages/index.php [L] 
