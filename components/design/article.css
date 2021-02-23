@@ -1,0 +1,57 @@
+.article .img {
+	max-height: 250px;
+	max-width: 333px;
+	height: auto;
+	width: auto;
+	margin-left:15%;
+	margin-top:1rem;
+	margin-bottom:1rem;
+}
+
+.article .img.big {
+	max-height: 247mm;
+	max-width: 175mm;
+	margin-left:0.5%;
+}
+
+.article .img.medium, .img {
+	max-height: 250px;
+	max-width: 333px;
+	margin-left:15%;
+}
+
+.article .img.small {
+	max-height: 100px;
+	max-width: 100px;
+	margin-left:33%;
+}
+
+.article .quote{
+    color: grey;
+    font-style: italic;
+    font-size:95%;
+  }
+  
+.article p.quote{
+    margin: 1rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 5px grey solid;
+    text-align:justify;
+    font-size: 80%;
+  }
+  
+.article .quote::before,.quote::after{
+      content:'"';
+      color:grey;
+  }
+
+
+.c-white{ color: white;}
+.c-lavender{ color: lavender;}	.c-silver{ color: silver;}			.c-grey{ color: grey;}				.c-black{ color: black;}
+.c-red{ color: red;}			.c-salmon{ color: salmon;} 			.c-tomato{ color: tomato;}			.c-firebrick{ color: firebrick;}
+.c-orange{ color: orange;}		.c-orangered{ color: orangered;}	.c-darkorange{ color: darkorange;}	.c-brown{ color: brown;}
+.c-yellow{ color: yellow;}		.c-gold{ color: gold;}				.c-navajowhite{ color: navajowhite;}.c-sandybrown{ color: sandybrown;}
+.c-green{ color: green;}		.c-chartreuse{ color: chartreuse;}	.c-springgreen{ color: springgreen;}.c-seagreen{ color: seagreen;}
+.c-blue{ color: blue;}			.c-royalblue{ color: royalblue;}	.c-turquoise{ color: turquoise;}	.c-navy{ color: navy;}	
+.c-violet{ color: violet;}		.c-pink{ color: pink;}				.c-purple{ color: purple;}			.c-palevioletred{ color: palevioletred;}

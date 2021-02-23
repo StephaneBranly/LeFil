@@ -12,8 +12,8 @@
                             </div>
                             <div class='left-side'>
                                 <h2>
-                                    <span>Le Fil hebdo</span>
-                                    <span>$id_numero</span>
+                                    <span>Le Fil</span>
+                                    <span>numéro $id_numero</span>
                                 </h2>
                             </div>
                         </div>

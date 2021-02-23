@@ -11,12 +11,9 @@ function convert_article(contenu){
         contenu = "<p>" + contenu;
     }
     contenu = contenu.replace(/\*\/>/gi,"<strong><em>");
-// alert(contenu);
     contenu = contenu.replace(/\/>/gi,"<em>");
     contenu = contenu.replace(/<\//gi,"</em>");
-// alert(contenu);
     contenu = contenu.replace(/<\*\//gi,"</em></strong>");
-// alert(contenu);
     contenu = contenu.replace(/\*>/gi,"<strong>");
     contenu = contenu.replace(/<\*/gi,"</strong>");
 
@@ -75,11 +72,9 @@ function convert_article(contenu){
         }
         p = contenu.search(/#definir /);
     }
-// alert(contenu);
     contenu = contenu.replace(/<'\nsmp;/g,"</p><p style=\"font-size:60%\" class=\"my-0\" id=\"");
     contenu = contenu.replace(/<t\nsmp;/g,"</h5><p style=\"font-size:60%\" class=\"my-0\" id=\"");
     contenu = contenu.replace(/\nsmp;/g,"</p><p style=\"font-size:60%\" class=\"my-0\" id=\"");
-// alert(contenu);
     contenu = contenu.replace(/c>  /gi,"<span class=\"c-");
     contenu = contenu.replace(/c> /gi,"<span class=\"c-");
     contenu = contenu.replace(/c>/gi,"<span class=\"c-");
@@ -89,16 +84,12 @@ function convert_article(contenu){
     contenu = contenu.replace(/l>/gi,"<a href=\"");
     contenu = contenu.replace(/<:>/gi,"\">");
     contenu = contenu.replace(/<l/gi,"</a>");
-// alert(contenu);
     contenu = contenu.replace(/\n\'>/gi,"</p><p class=\"quote\">");
     contenu = contenu.replace(/<\'\n/gi,"</p><p>");
-// alert(contenu);
     contenu = contenu.replace(/t>/gi,"</p><h5>");
     contenu = contenu.replace(/<t/gi,"</h5><p>");
-// alert(contenu);
     contenu = contenu.replace(/\'>/gi,"<span class=\"quote\">");
     contenu = contenu.replace(/<\'/gi,"</span>");
-// alert(contenu);
     contenu = contenu.replace(/\.>\n/gi,"</p><ul><li>");
     contenu = contenu.replace(/\.>/gi,"</p><ul><li>");
 
@@ -115,13 +106,10 @@ function convert_article(contenu){
 
     contenu = contenu.replace(/\n<\./gi,"</li></ul><p>");
     contenu = contenu.replace(/<\./gi,"</li></ul><p>");
-// alert(contenu);
     contenu = contenu.replace(/\n/gi,"</p><p>");
-// alert(contenu);
     contenu = contenu.replace(/&/gi,"ₔ");
-// alert(contenu);
     contenu += "</p>";
     contenu = contenu.replace(/<p><\/p>/gi,"");
+
     return contenu;
-//fin
 }

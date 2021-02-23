@@ -18,10 +18,12 @@
 <link href="../components/design/numeros.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
+    include_once("../components/container.php");
     include_once("../components/header.php");
     include_once("../components/notifications.php");
     include_once("../components/numero.php");
     include_once("../components/numeros.php");
+    include_once("../components/profile.php");
 ?>
 
 <script type="text/javascript" src="../components/services/article.js"></script>

@@ -24,6 +24,7 @@ function changeArticleContent(id_article,div) {
     if (xhr.readyState == 4) {
       new_content = readBody(xhr);
       div.innerHTML = convert_article(new_content);
+     
     }
   };
   xhr.open("GET", url);
