@@ -16,7 +16,7 @@
             echo  "<span onclick=\"RedirectionJavascript('admin',0);\"><i class='icon-gauge'></i>ADMIN</span>";
         echo"<span onclick=\"view_profile('$user');\"><i class='icon-address-card-o'></i>$username</span><span onclick=\"RedirectionJavascript('logout',0);\"><i class='icon-user-pair'></i>Se déconnecter</span></div>";
     }
-    echo "</header>";
+    echo "</header><div id='wave_container'><div class='wave'></div></div>";
 
     notifications();
     } 

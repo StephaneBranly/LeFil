@@ -24,7 +24,7 @@
 
             $_SESSION['connected']=true;
             $user=$user['user'];
-            $query = mysqli_query($connect,"SELECT `iduser`,`username` FROM `users` WHERE `iduser`='$user'");
+            $query = mysqli_query($connect,"SELECT `iduser`,`username` FROM `lf_users` WHERE `iduser`='$user'");
             $res = mysqli_fetch_array($query);
             $date = date('Y-m-d H:i:s');
             if (count($res) == 0)
@@ -32,7 +32,7 @@
                 $_SESSION['notification_icon']='icon-cup';
                 $_SESSION['username']=$user;
                 $_SESSION['notification_content']="Bienvenue $user ! Ton compte a été créé !";
-                $query = mysqli_query($connect,"INSERT INTO `users` (iduser,username,creation_account,last_connexion,mail,mail_visibility,mail_news,mail_ads) VALUES ('$user','$user','$date','$date','$mail','connected_user',FLOOR( 10000 + RAND( ) *89999 ),FLOOR( 10000 + RAND( ) *89999 ))");
+                $query = mysqli_query($connect,"INSERT INTO `lf_users` (iduser,username,creation_account,last_connexion,mail,mail_news) VALUES ('$user','$user','$date','$date','$mail',FLOOR( 10000 + RAND( ) *89999 ))");
                 echo "<script type='text/javascript'>RedirectionJavascript('profile/$user-edit',2000);</script>";
             }
             else
@@ -40,7 +40,7 @@
                 $_SESSION['username']=$res['username'];
                 $_SESSION['notification_icon']='icon-cup';
                 $_SESSION['notification_content']="Bonjour $res[username]";
-                $query = mysqli_query($connect,"UPDATE `users` SET `last_connexion` = '$date' WHERE iduser = '$user'");
+                $query = mysqli_query($connect,"UPDATE `lf_users` SET `last_connexion` = '$date' WHERE iduser = '$user'");
                 $last_page='../..'.secure_session('last_uri');
                 if(secure_session('last_uri'))
                     echo "<script type='text/javascript'>setTimeout(\"{document.location.href='$last_page';};\", 2000);</script>";

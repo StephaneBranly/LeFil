@@ -3,3 +3,8 @@ ErrorDocument 404 /pages/error404.php
 
 RewriteEngine on
 RewriteRule ^index/?$ pages/index.php [L] 
+RewriteRule ^accueil/?$ pages/index.php [L] 
+RewriteRule ^login/(?)ticket=(.)*$ pages/log.php?ticket=$1 [L] 
+RewriteRule ^login/?$ pages/log.php?section=login [L] 
+RewriteRule ^logout/?$ pages/log.php?section=logout [L] 
+RewriteRule ^numeros/?$ pages/numeros.php [L] 

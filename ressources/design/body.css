@@ -4,7 +4,8 @@
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: rgb(230, 230, 230);
+    /* background-color: rgb(230, 230, 230);*/
+    background-color: #2b2b2b; 
     padding-bottom: 150px;
     font-size: xx-large;
   }
