@@ -12,6 +12,7 @@
 
 
 <link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/container.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/notifications.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numero.css" rel="stylesheet" media="all" type="text/css">

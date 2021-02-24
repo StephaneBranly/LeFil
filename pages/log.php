@@ -86,8 +86,7 @@
     <body>
         <?php
             _header(true);
-            article('Redirection','Vous allez être redirigé...');
-            _footer(); 
+            container('Redirection','Vous allez être redirigé...');
             $_SESSION['notification_new']=true;
 
         ?>

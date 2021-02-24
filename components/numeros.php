@@ -38,7 +38,6 @@
         {
             echo "<h1 id='numero_before'>Nos derniers numéros :</h1>";
             $query = mysqli_query($connect,"SELECT * FROM `lf_journaux` WHERE statut = 'publié' ORDER BY `date_publication` DESC LIMIT $number_to_display");
-
         }
         while($res = mysqli_fetch_array($query))
             $numero_content .= numero($res['numéro']);

@@ -58,3 +58,24 @@
     width: 60%;
     height: auto;
 }
+
+.button_pdf_dl{
+    float: right;
+    padding: 5px;
+    margin: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: white;
+    border: 2px solid #26292d;
+    border-radius: 10px;
+    font-size: 20px;
+    color: rgb(255, 104, 104);
+    text-decoration: none;
+    transition: all 0.1s;
+}
+.button_pdf_dl:hover{
+    box-shadow: 5px 5px 0px #26292d;
+    transform: translateX(-5px) translateY(-5px) scale(1.01);
+}
+.button_pdf_dl:hover .icon{
+    transform: rotate(10deg);
+}

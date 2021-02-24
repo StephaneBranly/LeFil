@@ -1,5 +1,3 @@
-let active_article = "page_de_couverture";
-
 function change_article(id_article,num=null){
     let old_tab = document.getElementById(active_article);
     let new_tab = document.getElementById(id_article);
@@ -13,7 +11,7 @@ function change_article(id_article,num=null){
       changeArticleContent(num,article_content);
     }
     else
-      article_content.innerHTML = "<img src='../ressources/covers/Le Fil 412.png'/>";
+      article_content.innerHTML = "<img src='"+image_file+"'/>";
 }
 
 function changeArticleContent(id_article,div) {
