@@ -1,5 +1,7 @@
-.container{
-    border: 2 px solid white;
+.section_container{
+    border: 2px solid white;
+    width: 60%;
+    display: inline-block;
 }
 
 .content_section{

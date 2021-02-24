@@ -44,6 +44,16 @@
     border-left: 5px solid rgb(255, 104, 104);
     transform: translateX(10px);
 }
+#display_numero #left_side .article.locked{
+    background-color: rgba(0,0,0,0.1);
+}
+#display_numero #left_side .article.locked:hover{
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    cursor:help;
+    transform: none;
+
+}
 #display_numero #left_side .article:hover{
     border-bottom: 1px solid #26292d;
     border-left: 5px solid #26292d;

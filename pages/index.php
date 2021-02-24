@@ -20,6 +20,7 @@
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
+        container("Site en construction...","Le site est actuellement en construction, des mises à jours sont faites régulièrement afin de rendre les différentes sections rapidement disponibles. <br/>Désolé de la gène occasionnée.");
         numeros(4);
     ?>
     </body>

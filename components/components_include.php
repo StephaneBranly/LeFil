@@ -19,6 +19,7 @@
 <link href="../components/design/numeros.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
+    include_once("../components/article.php");
     include_once("../components/container.php");
     include_once("../components/header.php");
     include_once("../components/notifications.php");

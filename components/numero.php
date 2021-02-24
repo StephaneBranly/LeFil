@@ -12,7 +12,6 @@
 
     function read_numero($numero){
         global $connect;
-
         $query_pdf = mysqli_query($connect,"SELECT lien_pdf FROM `lf_journaux` WHERE `numéro`=$numero");
         $res_pdf = mysqli_fetch_array($query_pdf);
         $link = ($res_pdf && $res_pdf['lien_pdf']) ? "<a href='../ressources/pdf/$res_pdf[lien_pdf]' target='_blank' class='button_pdf_dl'><i class='icon  icon-attach'></i>Numéro disponible en PDF !</a>" : "";
@@ -38,19 +37,24 @@
         $index = 0;
         while($res = mysqli_fetch_array($query))
         {
-            if($index==0)
+            
+            if(can_article_be_read($res['identifiant']))
             {
-                echo "<script type='text/javascript'>let active_article = 'article-$res[identifiant]';</script>";
-                echo "<div class='article $second_tab_active' id='article-$res[identifiant]' onClick=\"change_article('article-$res[identifiant]','$res[identifiant]');\">$res[titre]</div>";
-                if($second_tab_active!=""){
-                    $second_tab_active = $res['identifiant'];
-                    $first_to_display = "article-$res[identifiant]";
+                if($index==0)
+                {
+                    echo "<script type='text/javascript'>let active_article = 'article-$res[identifiant]';</script>";
+                    echo "<div class='article $second_tab_active' id='article-$res[identifiant]' onClick=\"change_article('article-$res[identifiant]','$res[identifiant]');\">$res[titre]</div>";
+                    if($second_tab_active!=""){
+                        $second_tab_active = $res['identifiant'];
+                        $first_to_display = "article-$res[identifiant]";
+                    }
                 }
-                
+                else
+                    echo "<div class='article' id='article-$res[identifiant]' onClick=\"change_article('article-$res[identifiant]','$res[identifiant]');\">$res[titre]</div>";
+                $index+=1;
             }
             else
-                echo "<div class='article' id='article-$res[identifiant]' onClick=\"change_article('article-$res[identifiant]','$res[identifiant]');\">$res[titre]</div>";
-            $index+=1;
+            echo "<div class='article locked' id='article-$res[identifiant]' onClick=\"write_notification('icon-lock','Il faut être connecté pour lire cet article',5000);\"><i class='icon icon-lock'></i>$res[titre]</div>";
         }
         echo "</div>";
         echo "<div id='right_side' class='article_content'></div>";
