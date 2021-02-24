@@ -22,6 +22,8 @@
         _header();
         container("Site en construction...","Le site est actuellement en construction, des mises à jours sont faites régulièrement afin de rendre les différentes sections rapidement disponibles. <br/>Désolé de la gène occasionnée.");
         numeros(4);
+        see_all_numeros_button();
+
     ?>
     </body>
 	

@@ -9,14 +9,14 @@
 <link href="../ressources/fontello/css/animation.css" rel="stylesheet" media="all" type="text/css">
 
 <link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
-
-
-<link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/article.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/container.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/notifications.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numero.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numeros.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/profile.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/see_all_numeros_button.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
     include_once("../components/article.php");
@@ -26,7 +26,9 @@
     include_once("../components/numero.php");
     include_once("../components/numeros.php");
     include_once("../components/profile.php");
+    include_once("../components/see_all_numeros_button.php");
 ?>
 
 <script type="text/javascript" src="../components/services/article.js"></script>
 <script type="text/javascript" src="../components/services/notifications.js"></script>
+<script type="text/javascript" src="../components/services/profile.js"></script>

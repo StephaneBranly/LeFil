@@ -57,7 +57,7 @@
             echo "<div class='article locked' id='article-$res[identifiant]' onClick=\"write_notification('icon-lock','Il faut être connecté pour lire cet article',5000);\"><i class='icon icon-lock'></i>$res[titre]</div>";
         }
         echo "</div>";
-        echo "<div id='right_side' class='article_content'></div>";
+        echo "<div id='right_side' ><div id='article_header'></div><div id='article_content'></div></div>";
         echo "</section></section></div>";
 
         echo "<script type='text/javascript' src='../components/services/numero.js'></script>";

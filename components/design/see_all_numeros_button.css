@@ -1,0 +1,13 @@
+.see_all{
+    border: 2px solid white;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.1s;
+    display: inline-block;
+}
+.see_all:hover{
+    box-shadow: 5px 5px 0px white;
+    transform: translateX(-5px) translateY(-5px);
+}

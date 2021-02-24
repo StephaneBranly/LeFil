@@ -1,4 +1,38 @@
-.article_content .img {
+#article_header h1.title{
+	color:rgb(255, 104, 104);
+	font-size:30px;
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	width: 87%;
+}
+#article_header h1.subtitle{
+	color:rgb(92, 92, 92);
+	font-size:20px;
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	width: 87%;
+}
+#article_header .photo_couverture{
+	display: inline-block;
+	width: 10%;
+	height: auto;
+}
+#article_header{
+	border-bottom: 1px solid #26292d;
+	margin-bottom: 15px;
+	border-radius: 15px 15px 0px 0px;
+	padding: 5px;
+	background-color: rgba(0,0,0,0.1);
+	vertical-align: top;
+}
+#article_header .authors{
+	text-align: right;
+	display: inline-block;
+	width: 98%;
+}
+#article_content .img {
 	max-height: 250px;
 	max-width: 333px;
 	height: auto;
@@ -8,31 +42,31 @@
 	margin-bottom:1rem;
 }
 
-.article_content .img.big {
+#article_content .img.big {
 	max-height: 247mm;
 	max-width: 175mm;
 	margin-left:0.5%;
 }
 
-.article_content .img.medium, .img {
+#article_content .img.medium, .img {
 	max-height: 250px;
 	max-width: 333px;
 	margin-left:15%;
 }
 
-.article_content .img.small {
+#article_content .img.small {
 	max-height: 100px;
 	max-width: 100px;
 	margin-left:33%;
 }
 
-.article_content .quote{
+#article_content .quote{
     color: grey;
     font-style: italic;
     font-size:95%;
   }
   
-.article_content p.quote{
+#article_content p.quote{
     margin: 1rem;
     margin-bottom: 2rem;
     padding-left: 1rem;
@@ -41,7 +75,7 @@
     font-size: 80%;
   }
   
-.article_content .quote::before,.quote::after{
+#article_content .quote::before,.quote::after{
       content:'"';
       color:grey;
   }
