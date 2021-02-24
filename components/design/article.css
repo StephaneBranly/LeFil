@@ -18,6 +18,7 @@
 	display: inline-block;
 	width: 10%;
 	height: auto;
+	margin-right: 5px;
 }
 #article_header{
 	border-bottom: 1px solid #26292d;

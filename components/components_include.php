@@ -10,17 +10,19 @@
 
 <link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/article.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/button_link.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/container.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/edit_article.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/notifications.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numero.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/numeros.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/profile.css" rel="stylesheet" media="all" type="text/css">
-<link href="../components/design/see_all_numeros_button.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
     include_once("../components/article.php");
     include_once("../components/container.php");
+    include_once("../components/edit_article.php");
     include_once("../components/header.php");
     include_once("../components/notifications.php");
     include_once("../components/numero.php");

@@ -1,5 +1,6 @@
 .section_container{
     border: 2px solid white;
+    border-radius: 5px;
     width: 60%;
     display: inline-block;
 }

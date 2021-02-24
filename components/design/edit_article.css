@@ -1,0 +1,30 @@
+#new_article .link_feed{
+    display: inline-block;
+    height: 100px;
+    width: 100%;
+}
+#new_article .link_feed span{
+    display: inline-block;
+    width: 5px;
+    background-color: rgb(150,150,150);
+    box-shadow: 1px 1px 0px #FFFFFF;
+
+    height: 100px;
+}
+#new_article .message{
+    display: inline-block;
+    width: 50%;
+    background-color: wheat;
+    border: 1px solid #FFFFFF;
+    box-shadow: 5px 5px 0px #FFFFFF;
+    border-radius: 15px;
+    padding: 30px;
+    padding-bottom: 5px;
+}
+#new_article .message p{
+    padding: 0px;
+    margin: 0px;
+}
+#new_article .message .details{
+    float: right;
+}

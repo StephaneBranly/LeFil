@@ -67,19 +67,22 @@
             else
             {
                 echo "<section id='profile'>";
-                if($user==secure_session('user'))
+                if($user==secure_session('user') && secure_session('connected'))
                     echo"<div id='owner'><span onclick=\"open_link('../profile/$user-edit');\"><i class='icon-pencil'></i>Editer le profil</span></div>";
                 echo"<h1>Profil de $res[username]</h1>
                 <h2>Informations compte</h2>
                 <table id='informations'>
                     <tr><td class='info_property'><i class='icon-user-pair'></i>ID utilisateur</td><td class='info_value'>$res[iduser]</td>
                     <tr><td class='info_property'><i class='icon-user-pair'></i>Username</td><td class='info_value'>$res[username]</td>";
-                    if($user==secure_session('user'))
+                    if($user==secure_session('user') && secure_session('connected'))
                         echo"<tr><td class='info_property'><i class='icon-user-pair'></i>Mail</td><td class='info_value'>$res[mail]</td>";
                     echo"<tr><td class='info_property'><i class='icon-user-pair'></i>Date création du compte</td><td class='info_value'>$res[creation_account]</td>
                     <tr><td class='info_property'><i class='icon-clock'></i>Dernière connexion</td><td class='info_value'>$res[last_connexion]</td>
                 </table>
                 </section>";
+
+                if($user==secure_session('user') && secure_session('connected'))
+                    echo "<section><a class='button_link' href='../edit-article-new'>Rédiger un nouvel article</a></section>";
             }
         }
     } 
