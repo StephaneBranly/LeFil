@@ -1,0 +1,7 @@
+DROP TABLE ` lf_contient `
+
+
+ALTER TABLE `lf_journaux` ADD `statut` VARCHAR(20) NOT NULL DEFAULT 'en_attente' AFTER `date_sortie`; 
+UPDATE `lf_journaux` SET `statut` = 'publié';
+
+ALTER TABLE `lf_journaux` ADD `date_publication` DATE NULL DEFAULT NULL AFTER `statut`; 

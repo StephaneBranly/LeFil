@@ -1,4 +1,4 @@
-.article .img {
+.article_content .img {
 	max-height: 250px;
 	max-width: 333px;
 	height: auto;
@@ -8,31 +8,31 @@
 	margin-bottom:1rem;
 }
 
-.article .img.big {
+.article_content .img.big {
 	max-height: 247mm;
 	max-width: 175mm;
 	margin-left:0.5%;
 }
 
-.article .img.medium, .img {
+.article_content .img.medium, .img {
 	max-height: 250px;
 	max-width: 333px;
 	margin-left:15%;
 }
 
-.article .img.small {
+.article_content .img.small {
 	max-height: 100px;
 	max-width: 100px;
 	margin-left:33%;
 }
 
-.article .quote{
+.article_content .quote{
     color: grey;
     font-style: italic;
     font-size:95%;
   }
   
-.article p.quote{
+.article_content p.quote{
     margin: 1rem;
     margin-bottom: 2rem;
     padding-left: 1rem;

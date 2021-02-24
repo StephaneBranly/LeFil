@@ -1,0 +1,32 @@
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lf_notifications`
+--
+
+CREATE TABLE `lf_notifications` (
+  `date` datetime NOT NULL,
+  `idnotif` int NOT NULL,
+  `iduser` varchar(30) NOT NULL,
+  `icon` varchar(100) NOT NULL,
+  `content` varchar(200) NOT NULL,
+  `viewed` tinyint NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `lf_users` (
+  `iduser` varchar(25) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `creation_account` datetime NOT NULL,
+  `last_connexion` datetime NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `mail_news` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `lf_articles` DROP `correction`;
+ALTER TABLE `lf_articles` DROP `corrigé`;
+
+ALTER TABLE `lf_articles` ADD `numero_journal` INT NULL DEFAULT NULL AFTER `id_concours`; 

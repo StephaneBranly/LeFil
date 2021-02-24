@@ -21,7 +21,10 @@
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
-        read_numero($id_numero);
+        if(can_numero_be_read($id_numero))
+            read_numero($id_numero);
+        else
+            container("Article non visible","Cet article n'existe pas, ou n'est pas visible.");
     ?>
     </body>
 	
