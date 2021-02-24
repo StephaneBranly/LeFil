@@ -23,7 +23,7 @@
     -moz-box-shadow: 5px 5px 10px 0px rgba(151, 146, 153,0.2);
     box-shadow: 5px 5px 10px 0px rgba(151, 146, 153,0.2);
     font-weight: 200;
-    color: #2b2b2b;
+    color: #26292d;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -77,9 +77,15 @@
     transform: rotate3d(0,1,0,-90deg);
 }
 
-#numeros .numero .cover img{
+#numeros .numero .cover .img_cover{
     width: 210px;
     height: 297px;
+}
+#numeros .numero .cover .logo_cover{
+    position: relative;
+    top: 30px;
+    width: 80px;
+    height: auto;
 }
 
 #numeros .numero .cover .num-down{
@@ -89,13 +95,16 @@
     transform: rotate(-90deg);
 }
 
-#numeros .numero .author{
+#numeros .numero .numero{
     font-family: acumin-pro, sans-serif;
     font-weight: 400;
     position: absolute;
-    top: 255px;
-    left: 50px;
-    opacity: .8;
+    display: inline;
+    top: 245px;
+    right: 20px;
+    border-top: 2px solid #26292d;
+    border-bottom: 2px solid #26292d;
+    padding: 5px;
 }
 
 #numeros .numero .container .front > div {
@@ -128,7 +137,7 @@
 #numeros .numero .container h2 {
     width: 210px;
     height: 40px;
-    color: #2b2b2b;
+    color: #26292d;
     font-size: 15px;
     line-height: 40px;
     padding-right: 10px;

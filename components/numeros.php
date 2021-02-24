@@ -2,9 +2,9 @@
 
     function numero($id_numero){
         if(file_exists("../ressources/covers/Le Fil $id_numero.png"))
-            $cover = "<img alt='image de couverture' src='../ressources/covers/Le Fil $id_numero.png'/>";
+            $cover = "<img class='img_cover' alt='image de couverture' src='../ressources/covers/Le Fil $id_numero.png'/>";
         else 
-            $cover =  "<p class=author>Le Fil, numéro $id_numero</p>";
+            $cover =  "<img class='logo_cover' alt='logo fil' src='../ressources/images/logo.png'/><p class='numero'>numéro $id_numero</p>";
         return "<div class='numero' onclick=\"RedirectionJavascript('./numero-$id_numero');\">
                         <div class='container'>
                         <div class='book'>
