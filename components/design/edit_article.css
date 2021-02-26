@@ -6,9 +6,7 @@
 #new_article .link_feed span{
     display: inline-block;
     width: 5px;
-    background-color: rgb(150,150,150);
-    box-shadow: 1px 1px 0px #FFFFFF;
-
+    background-color: #FFFFFF;
     height: 100px;
 }
 #new_article .message{
@@ -16,8 +14,7 @@
     width: 50%;
     background-color: wheat;
     border: 1px solid #FFFFFF;
-    box-shadow: 5px 5px 0px #FFFFFF;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 30px;
     padding-bottom: 5px;
 }
@@ -27,4 +24,41 @@
 }
 #new_article .message .details{
     float: right;
+}
+#new_article .edit_form{
+    color: #26292d;
+    background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);
+    border: 2px solid #FFFFFF;
+    border-radius: 5px;
+    width: 85%;
+    display: inline-block;
+    margin: 0px;
+    margin-top: 15px;
+}
+#new_article .main_content input{
+    width: 100%;
+}
+#new_article .main_content textarea{
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 300px;
+}
+#new_article .update_button{
+    border: 2px solid #26292d;;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    color: #26292d;;
+    font-size: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.1s;
+    background-color: rgba(0,0,0,0);
+    display: inline-block;
+}
+#new_article .update_button:hover{
+    box-shadow: 5px 5px 0px #26292d;;
+    transform: translateX(-5px) translateY(-5px);
+    cursor: pointer;
 }
