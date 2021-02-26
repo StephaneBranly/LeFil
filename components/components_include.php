@@ -32,5 +32,6 @@
 ?>
 
 <script type="text/javascript" src="../components/services/article.js"></script>
+<script type="text/javascript" src="../components/services/edit_article.js"></script>
 <script type="text/javascript" src="../components/services/notifications.js"></script>
 <script type="text/javascript" src="../components/services/profile.js"></script>

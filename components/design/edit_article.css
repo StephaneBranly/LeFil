@@ -5,15 +5,15 @@
 }
 #new_article .link_feed span{
     display: inline-block;
-    width: 5px;
-    background-color: #FFFFFF;
+    width: 0px;
+    border-left: 10px dotted #ececec;
+    transform: translateX(-5px);
     height: 100px;
 }
 #new_article .message{
     display: inline-block;
     width: 50%;
-    background-color: wheat;
-    border: 1px solid #FFFFFF;
+    background-color: #ececec;
     border-radius: 5px;
     padding: 30px;
     padding-bottom: 5px;
@@ -25,24 +25,41 @@
 #new_article .message .details{
     float: right;
 }
-#new_article .edit_form{
+#new_article #edit_form{
     color: #26292d;
     background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);
-    border: 2px solid #FFFFFF;
     border-radius: 5px;
     width: 85%;
     display: inline-block;
     margin: 0px;
     margin-top: 15px;
 }
-#new_article .main_content input{
-    width: 100%;
+#new_article #edit_form div{
+    transition: visibility 0s, opacity 0.5s linear;
 }
-#new_article .main_content textarea{
+#new_article #edit_form input{
+    width: auto;
+    text-align: left;
+    display: inline-block;
+    border: 1px solid #26292d;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#new_article #edit_form textarea{
     width: 100%;
+    text-align: justify;
+    display: inline-block;
+    border: 1px solid #26292d;
+    border-radius: 5px;
+    padding: 15px;
     max-width: 100%;
     min-width: 100%;
     height: 300px;
+}
+#new_article #edit_form #article_content{
+    height: auto;
+    text-align: justify;
 }
 #new_article .update_button{
     border: 2px solid #26292d;;
@@ -61,4 +78,110 @@
     box-shadow: 5px 5px 0px #26292d;;
     transform: translateX(-5px) translateY(-5px);
     cursor: pointer;
+}
+#new_article #evolution_status {
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 100px;
+}
+#new_article #evolution_status tbody{
+    display: inline-block;
+    color: #ececec;
+    text-align: center;
+}
+#new_article #evolution_status .circle div{
+    display: inline-block;
+    border: 3px solid #ececec;
+    margin: 5px;
+    padding: 1px;
+    border-radius: 50%;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+#new_article #evolution_status .circle span{
+    display: inline-block;
+    font-size: 14px;
+    margin: 1px;
+    margin-top: 2px;
+    border-radius: 50%;
+    height: 46px;
+    width: 46px;
+    background-color: #ececec;   
+    box-shadow: 2px 2px 10px #26292d inset;
+}
+#new_article #evolution_status .circle .current{
+    background-color: #f9e728;   
+}
+#new_article #evolution_status .circle .done{
+    background-color: #8ff05f;   
+}
+#new_article #evolution_status .circle .refused{
+    background-color: #f44a4a;   
+}
+#new_article #evolution_status .link div{
+    width: 100px;
+    display: inline-block;
+    border: 3px solid #ececec;
+    border-radius: 6px;
+}
+#new_article #evolution_status .link div.done{
+    border: 3px solid #8ff05f;
+}
+#new_article #evolution_status #update_status button{
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ececec;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding : 5px;
+    font-size: 20px;
+    color: #ececec;
+    transition: all 0.1s;
+}
+#new_article #evolution_status #update_status button:hover{
+    box-shadow: 5px 5px 0px #ececec;
+    transform: translateX(-5px) translateY(-5px);
+    cursor: pointer;
+}
+#new_article #actual_status{
+    color: #ececec;
+}
+#new_article #edit_form  h1{
+    border-top: 1px solid #26292d;
+    background-color: rgba(50,50,50,0.1);
+    padding: 5px;
+}
+#new_article .togglable_section .input{
+    text-align: left;
+}
+#new_article #edit_form  h2{
+    display: inline-block;
+    font-size: 20px;
+    color: rgb(255, 104, 104);
+    text-decoration: underline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#new_article #edit_form  h1:hover{
+    cursor: pointer;
+}
+#new_article #edit_form .togglable_section{
+    padding: 15px;
+    margin: 5px;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px #26292d inset;
+    transition: all 0.1s;
+}
+#new_article #edit_form .icon_open_close{
+    float: right;
+    margin-right: 30px;
+    padding: 5px;
+    transition: all 0.1s;
+    transform: rotate(0deg);
+}
+#new_article #edit_form .icon_open_close.closed{
+    transform: rotate(180deg);
 }
