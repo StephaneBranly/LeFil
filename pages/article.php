@@ -8,7 +8,12 @@
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
             $id_article = secure_get('id');
-            $nom_page="Article $id_article";
+            $query = mysqli_query($connect,"SELECT `titre` FROM `lf_articles` WHERE `identifiant`=$id_article");
+            $res = mysqli_fetch_array($query);
+            if($res)
+                $nom_page="Article $res[titre]";
+            else 
+                $nom_page="Article $id_article";
             // TODO : ADD DESCRIPTION HERE
             $description_page="TODO";
             include_once("../lib/meta.php");
