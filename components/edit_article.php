@@ -9,7 +9,7 @@
         
         if($res['statut']!='publié' && own_article($id_article))
             return 1;
-        if($res['statut']!='brouillon' && secure_session(is_admin()))
+        if($res['statut']!='brouillon' && secure_session('is_admin'))
             return 1;
         return 0;
     }
@@ -17,7 +17,7 @@
     function own_article($id_article){
         global $connect;
         $current_user = secure_session('user');
-        $query_author = mysqli_query($connect,"SELECT auteur FROM `lf_écrit` WHERE `article`=$id_article AND `auteur`='$current_user'");
+        $query_author = mysqli_query($connect,"SELECT auteur FROM `lf_articles` WHERE `identifiant`=$id_article AND `auteur`='$current_user'");
         $res_author = mysqli_fetch_array($query_author);
         return ($res_author && count($res_author));
     }
@@ -32,49 +32,83 @@
 
         $status = $res_article['statut'];
         $current_login = secure_session('user');
-
         if($status=='brouillon' && isset($_POST['brouillon']) && own_article($id)){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'correction' WHERE `identifiant`= $id");
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),'Article soumis à correction','8ff05f','icon-search')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] soumis à correction','icon-lightbulb',0)");
         }else if($status=='correction' && isset($_POST['corrige']) && (secure_session('is_correcteur') || secure_session('is_admin')) && !own_article($id)){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'validation_admin' WHERE `identifiant`= $id");
-            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article corrigé, soumis a la validation d'un admin\",'8ff05f','icon-search')");
-        }else if(($status=='validation_admin' || $status='refusé_admin') && isset($_POST['valider_admin']) && secure_session('is_admin')){
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article corrigé, soumis a la validation d'un admin\",'8ff05f','icon-hammer')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] corrigé','icon-lightbulb',0)");
+        }else if(($status=='validation_admin' || $status=='refusé_admin') && isset($_POST['valider_admin']) && secure_session('is_admin')){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'validation_pvdc' WHERE `identifiant`= $id");
-            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article validé par l'admin, soumis a la validation du PVDC\",'8ff05f','icon-search')");
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article validé par l'admin, soumis a la validation du PVDC\",'8ff05f','icon-hammer')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] validé par admin','icon-lightbulb',0)");
         }else if($status=='validation_admin' && isset($_POST['refuser_admin']) && secure_session('is_admin')){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'refusé_admin' WHERE `identifiant`= $id");
-            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article refusé par l'admin\",'f44a4a','icon-search')");
-        }else if(($status=='validation_pvdc' || $status='refusé_pvdc') && isset($_POST['valider_pvdc']) && (secure_session('is_admin') || secure_session('is_pvdc'))){
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article refusé par l'admin\",'f44a4a','icon-hammer')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] refusé par admin','icon-lightbulb',0)");
+        }else if(($status=='validation_pvdc' || $status=='refusé_pvdc') && isset($_POST['valider_pvdc']) && (secure_session('is_admin') || secure_session('is_pvdc'))){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'attente_publication' WHERE `identifiant`= $id");
-            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article validé par le PVDC, en attente de publication\",'8ff05f','icon-search')");
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article validé par le PVDC, en attente de publication\",'8ff05f','icon-hammer')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] validé par le PVDC','icon-lightbulb',0)");
         }else if($status=='validation_pvdc' && isset($_POST['refuser_pvdc']) && (secure_session('is_admin') || secure_session('is_pvdc'))){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'refusé_pvdc' WHERE `identifiant`= $id");
-            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article refusé par le PVDC\",'f44a4a','icon-search')");
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article refusé par le PVDC\",'f44a4a','icon-note')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] refusé par le PVDC','icon-lightbulb',0)");
+        }else if($status=='attente_publication' && isset($_POST['publier']) && secure_session('is_admin') && !$res_article['numero_journal']){
+            $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'publié' WHERE `identifiant`= $id");
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"L'article a été publié\",'8ff05f','icon-note')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] publié','icon-lightbulb',0)");
         }
 
         if(isset($_POST['update_button']) && can_article_be_edited($id)){
-            $titre = secure_post('titre');
-            $soustitre = secure_post('soustitre');
-            $contenu = secure_post('contenu');
-            $description_courte = secure_post('courte_description');
-            $genre = secure_post('genre');
-            $registre = secure_post('registre');
-            $rubrique = secure_post('rubrique');
-            $image_couverture = secure_post('image_couverture');
-            $anonymat_auteur = secure_post('anonymat_auteur');
-            $reserve_abonne = secure_post('reserve_abonne');
-            $article_pour = secure_post('article_pour');
+            $modifications = "";
+            $titre = SQLProtect(secure_post('titre'),1);
+            if($titre != $res_article['titre']) $modifications .= "titre ; ";
+            $soustitre = SQLProtect(secure_post('soustitre'),1);
+            if($soustitre != $res_article['sous_titre']) $modifications .= "sous-titre ; ";
+            $contenu = SQLProtect(secure_post('contenu'),1);
+            if($contenu != $res_article['contenu']) $modifications .= "contenu ; ";
+            $description_courte = SQLProtect(secure_post('courte_description'),1);
+            if($description_courte != $res_article['courte_description']) $modifications .= "courte description ; ";
+            $genre = SQLProtect(secure_post('genre'),1);
+            $registre = SQLProtect(secure_post('registre'),1);
+            $rubrique = SQLProtect(secure_post('rubrique'),0);
+            $image_couverture = SQLProtect(secure_post('image_couverture'),1);
+            if($image_couverture != $res_article['image_couverture']) $modifications .= "image de couverture ; ";
 
-            if($genre=='-') $genre = 'null';
-            if($rubrique=='---') $rubrique = 'null';
-            if($registre=='---') $registre = 'null';
-            if($soustitre=='---') $soustitre = 'null';
-            
-            $query_upd_content = mysqli_query($connect,"UPDATE `lf_articles` SET `titre` = '$titre', `sous_titre` = '$soustitre', 
-            `courte_description` = '$description_courte', `texte_contenu` = '$contenu',
-             `image_couverture` = '$image_couverture', `id_rubrique` = $rubrique, 
-             `id_registre` = '$registre', `id_genre` = '$genre', `id_concours` = '1', `numero_journal` = 1, `réservé_abonné` = $reserve_abonne, `anonymat_auteur` = $anonymat_auteur WHERE `lf_articles`.`identifiant` = $id"); 
+            $anonymat_auteur = SQLProtect(secure_post('anonymat_auteur'),0);
+            if($anonymat_auteur != $res_article['anonymat_auteur']) $modifications .= "anonymat auteur ; ";
+            $reserve_abonne = SQLProtect(secure_post('reserve_abonne'),0);
+            if($reserve_abonne != $res_article['réservé_abonné']) $modifications .= "réservé abonné ; ";
+            $article_pour = SQLProtect(secure_post('article_pour'),1);
+            $concours = "";
+            $numero_fil = 0;
+            if(preg_match("/[a-z][0-9]+/i", $article_pour))
+            {
+                $concours = $article_pour;
+            }else if((secure_session('is_redacteur') || secure_session('is_admin')) && $article_pour != 'horsserie'){
+                $numero_fil = $article_pour;
+            }
+            if($concours != $res_article['id_concours']) $modifications .= "ID concours ; ";
+            if($numero_fil != $res_article['numero_journal']) $modifications .= "numéro fil ; ";
+
+            if($genre=='---') $genre = '';
+            if($rubrique=='---') $rubrique = 0;
+            if($registre=='---') $registre = '';
+
+            if($genre != $res_article['id_genre']) $modifications .= "genre ; ";
+            if($registre != $res_article['id_registre']) $modifications .= "registre ; ";
+            if($rubrique != $res_article['id_rubrique']) $modifications .= "rubrique ; ";
+
+            $query_upd_content = mysqli_query($connect,"UPDATE `lf_articles` SET `titre` = \"$titre\", `sous_titre` = \"$soustitre\", 
+            `courte_description` = \"$description_courte\", `texte_contenu` = \"$contenu\",
+             `image_couverture` = \"$image_couverture\", `id_rubrique` = $rubrique, 
+             `id_registre` = \"$registre\", `id_genre` = \"$genre\", `id_concours` = \"$concours\", `numero_journal` = $numero_fil, 
+             `réservé_abonné` = $reserve_abonne, `anonymat_auteur` = $anonymat_auteur WHERE `lf_articles`.`identifiant` = $id"); 
+            if($modifications)
+                $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Des modifications ont été faites : $modifications\",'f9e728','icon-pen')");
         }
         $query_article = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE identifiant=$id");
         $res_article = mysqli_fetch_array($query_article);
@@ -97,12 +131,15 @@
             $liste_registres .= ($res_article['id_registre']==$res['registre']) ? "<option name='$res[registre]' value='$res[registre]' selected>$res[registre]</option>" : "<option name='$res[registre]' value='$res[registre]'>$res[registre]</option>";
 
         $article_pour = (!$res_article['id_concours']=="" && !$res_article['numero_journal']) ? "<option name='horsserie' value='horsserie' selected>Hors-série</option>" : "<option name='horsserie' value='horsserie'>Hors-série</option>" ;
-        $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux` WHERE statut='en_attente'");
-        while($res = mysqli_fetch_array($query3))
-            $article_pour .= ($res_article['numero_journal']==$res['numéro']) ?  "<option name='$res[numéro]' value='$res[numéro]' selected>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>" : 
-            "<option name='$res[numéro]' value='$res[numéro]'>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>";
-            $query3 = mysqli_query($connect,"SELECT numéro, date_sortie FROM `lf_journaux` WHERE statut='brouillon'");
-        
+        if(secure_session('is_redacteur') || secure_session('is_admin'))
+        {
+            $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux` WHERE statut='en_attente'");
+            while($res = mysqli_fetch_array($query3))
+                $article_pour .= ($res_article['numero_journal']==$res['numéro']) ?  "<option name='$res[numéro]' value='$res[numéro]' selected>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>" : 
+                "<option name='$res[numéro]' value='$res[numéro]'>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>";
+                $query3 = mysqli_query($connect,"SELECT numéro, date_sortie FROM `lf_journaux` WHERE statut='brouillon'");
+        }
+
         $query4 = mysqli_query($connect,"SELECT semestre_édition FROM `lf_concours` WHERE article_gagnant IS NULL");
         while($res = mysqli_fetch_array($query4))
             $article_pour .= ($res_article['id_concours']==$res['semestre_édition'] && !$res_article['numero_journal']) ?  "<option name='$res[semestre_édition]' value='$res[semestre_édition]' selected>Concours $res[semestre_édition]</option>" : 
@@ -131,7 +168,7 @@
         }else if($status=="attente_publication"){
             $status_show = "en attente de publication <i class='icon icon-edit'></i>";
             $links = ['done','done','done','done','done','done','done','done','current'];
-            if(secure_session('is_admin'))
+            if(secure_session('is_admin') && !$res_article['numero_journal'])
                 $buttons_update_status[4] = "<form action='' method='post'><button type='submit' value='valider' name='publier'/>Publier</button></form>";
         }else if($status=="publié"){
             $status_show = "publié <i class='icon icon-note'></i>";
@@ -144,7 +181,6 @@
             $links = ['done','done','done','done','done','done','refused','',''];
             if(secure_session('is_pvdc') || secure_session('is_admin'))
                 $buttons_update_status[3] = "<form action='' method='post'><button type='submit' value='valider' name='valider_pvdc' />Valider</button></form>";
-        
         }else{
                 $status_show = "NaN";
                 $links = ['','','','','','','','',''];
@@ -195,9 +231,14 @@
         <div class='input'><h2>Titre : </h2><input $disabled type='text' name='titre' id='titre' value='$res_article[titre]'/></div>
         <div class='input'><h2>Sous-titre : </h2><input $disabled type='text' name='soustitre' id='soustitre' value='$res_article[sous_titre]'/></div>
         <h2>Contenu :</h2>
-        <textarea class='contenu' $disabled name='contenu' onload='update_preview();'; onkeypress='update_preview();' id='contenu'>$res_article[texte_contenu]</textarea>
+        <textarea class='contenu' $disabled name='contenu' onkeypress='update_preview();' id='contenu'>$res_article[texte_contenu]</textarea>
         <h2>Prévisualisation de l'article</h2>
         <section id='article_content'></section>
+        <script type='text/javascript'> window.addEventListener('load', function() {
+            update_preview();
+        })
+       </script>
+
         </div>";
 
         echo "<h1 onclick='toggle_section(2);'>Détails de l'article<i id='section2_icon' class='icon icon_open_close icon-up-open'></i></h1>";

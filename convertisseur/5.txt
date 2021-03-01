@@ -26,3 +26,8 @@ CREATE TABLE `lf_historique` (
   `icon` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
+
+
+ALTER TABLE `lf_articles` ADD `auteur` VARCHAR(25) NOT NULL AFTER `anonymat_auteur`; 
+
+ALTER TABLE `lf_notifications` CHANGE `idnotif` `idnotif` INT NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`idnotif`); 

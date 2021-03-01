@@ -24,12 +24,11 @@
         if(secure_session('connected'))
         {
             if($id_numero==-1)
-        {
-                $query = mysqli_query($connect,"INSERT INTO `lf_articles`(`titre`, `sous_titre`,`anonymat_auteur`,`réservé_abonné`,`date_parution`,`texte_contenu`) VALUES ('titre','sous-titre',0,0,NOW(),'')");
-                $id = mysqli_insert_id($connect);
+            {
                 $user = secure_session('user');
-                $query = mysqli_query($connect,"INSERT INTO `lf_écrit`(`auteur`, `article`) VALUES ('$user',$id)");
-
+                $query = mysqli_query($connect,"INSERT INTO `lf_articles`(`titre`, `sous_titre`,`anonymat_auteur`,`auteur`,`réservé_abonné`,`date_parution`,`texte_contenu`) VALUES ('titre','sous-titre',0,'$user',0,NOW(),'')");
+                $id = mysqli_insert_id($connect);
+               
                 $_SESSION['notification_icon']='icon-pen';
                 $_SESSION['notification_new']=true;
                 $_SESSION['notification_content']="Un nouveau brouillon vient d'être créé !";

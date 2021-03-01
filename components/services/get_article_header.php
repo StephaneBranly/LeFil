@@ -15,16 +15,7 @@
                 echo "<h1 class='subtitle'>$res[sous_titre]</h1>";
             if(!$res['anonymat_auteur'])
             {
-                $query_authors = mysqli_query($connect,"SELECT * FROM `lf_écrit` LEFT JOIN `lf_users` ON `lf_écrit`.`auteur` = `lf_users`.`iduser` WHERE lf_écrit.article=$id_article");
-                echo "<span class='authors'>Ecrit par ";
-                while($res_author = mysqli_fetch_array($query_authors))
-                {
-                    if($res_author['username']!=null)
-                        echo "$res_author[username]  </span>";
-                    else 
-                        echo "$res_author[auteur]  </span>";
-                }
-                echo "</span>";
+                echo "<span class='authors'>Ecrit par $res[auteur]</span>";
             }
         }
         else
