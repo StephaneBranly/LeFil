@@ -17,7 +17,7 @@ function can_article_be_read($id_article)
     return 0;
 }
 
-function article_mini($id_article){
+function article_mini($id_article, $show_status = false){
     global $connect;
     $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE `identifiant`=$id_article");
     $res = mysqli_fetch_array($query);
@@ -25,7 +25,7 @@ function article_mini($id_article){
     
     if(can_article_be_read($id_article)){
         echo "<div>";
-        if(own_article($id_article)){
+        if($show_status){
             echo "<div class='status_article'>Statut : $res[statut]</div>";
         }
         echo "<a href='../article-$id_article'><section class='miniarticle'><h1>$res[titre]</h1><h2>$res[sous_titre]</h2></section></a>";

@@ -25,9 +25,10 @@
         $res = mysqli_fetch_array($query);
         if ($res && count($res) != 0){
             profile($user);
+            echo "<br/>";
             $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE `auteur`='$user' ORDER BY `date_parution` DESC");
             while($res_article = mysqli_fetch_array($query_articles)){
-                article_mini($res_article['identifiant']);
+                article_mini($res_article['identifiant'],own_article($res_article['identifiant']));
             }
         }
         else
