@@ -39,7 +39,7 @@
                     $query = mysqli_query($connect,"UPDATE `lf_users` 
                     SET `username` = '$username',
                      `mail` = '$mail',
-                     WHERE iduser = '$user'");
+                     WHERE iduser = '$user'");                    
                     echo "<script type='text/javascript'>RedirectionJavascript('profile/$user',100);</script>";
                     $_SESSION['notification_icon']='icon-floppy';
                     $_SESSION['notification_new']=true;
