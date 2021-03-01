@@ -5,7 +5,8 @@
     $casUrl = "https://cas.utc.fr/cas/";
     require_once('../lib/xml.php');
     require_once('../lib/cas.php');
-
+    $_SESSION['user'] = 'branlyst';
+    $_SESSION['connected'] = true;
     if(isset($_GET['ticket']) || secure_get('section') == 'login')
     {
         $cas = new Cas($casUrl, $myUrl);
@@ -24,9 +25,27 @@
 
             $_SESSION['connected']=true;
             $user=$user['user'];
+
             $query = mysqli_query($connect,"SELECT `iduser`,`username` FROM `lf_users` WHERE `iduser`='$user'");
             $res = mysqli_fetch_array($query);
             $date = date('Y-m-d H:i:s');
+
+            $query_admin = mysqli_query($connect,"SELECT `role` FROM `lf_roles` WHERE `login`='$user' AND `role`='admin'");
+            $res_admin = mysqli_fetch_array($query_admin);
+            $_SESSION['is_admin']=($res_admin && count($res_admin));
+
+            $query_correcteur = mysqli_query($connect,"SELECT `role` FROM `lf_roles` WHERE `login`='$user' AND `role`='correcteur'");
+            $res_correcteur = mysqli_fetch_array($query_correcteur);
+            $_SESSION['is_correcteur']=($res_correcteur && count($res_correcteur));
+
+            $query_redacteur = mysqli_query($connect,"SELECT `role` FROM `lf_roles` WHERE `login`='$user' AND `role`='redacteur'");
+            $res_redacteur = mysqli_fetch_array($query_redacteur);
+            $_SESSION['is_redacteur']=($res_redacteur && count($res_redacteur));
+
+            $query_pvdc = mysqli_query($connect,"SELECT `role` FROM `lf_roles` WHERE `login`='$user' AND `role`='pvdc'");
+            $res_pvdc = mysqli_fetch_array($query_pvdc);
+            $_SESSION['is_pvdc']=($res_pvdc && count($res_pvdc));
+
             if (count($res) == 0)
             {
                 $_SESSION['notification_icon']='icon-cup';
@@ -67,7 +86,6 @@
         echo "<script type='text/javascript'>RedirectionJavascript('accueil',100);</script>";
     }
 ?>
-   
 <?php include_once("../lib/document_base.php"); ?>
 <!DOCTYPE html>
 <html>
@@ -91,5 +109,5 @@
 
         ?>
     </body>
-	
+
 </html>

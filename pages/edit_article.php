@@ -21,23 +21,33 @@
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
-        if($id_numero==-1)
+        if(secure_session('connected'))
         {
-            $query = mysqli_query($connect,"INSERT INTO `lf_articles`(`titre`, `sous_titre`,`anonymat_auteur`,`réservé_abonné`,`date_parution`,`texte_contenu`) VALUES ('titre','sous-titre',0,0,NOW(),'')");
+            if($id_numero==-1)
+        {
+                $query = mysqli_query($connect,"INSERT INTO `lf_articles`(`titre`, `sous_titre`,`anonymat_auteur`,`réservé_abonné`,`date_parution`,`texte_contenu`) VALUES ('titre','sous-titre',0,0,NOW(),'')");
                 $id = mysqli_insert_id($connect);
-            $_SESSION['notification_icon']='icon-pen';
-            $_SESSION['notification_new']=true;
-            $_SESSION['notification_content']="Un nouveau brouillon vient d'être créé !";
-            container("Redirection en cours","Vous allez être redirigé sur le nouveau brouillon.");
-            echo "<script type='text/javascript'>RedirectionJavascript('./edit-article-$id',100);</script>";
-        }
-        else
-        {
-            if(can_edit_article($id_numero))
-                edit_article($id_numero);
+                $user = secure_session('user');
+                $query = mysqli_query($connect,"INSERT INTO `lf_écrit`(`auteur`, `article`) VALUES ('$user',$id)");
+
+                $_SESSION['notification_icon']='icon-pen';
+                $_SESSION['notification_new']=true;
+                $_SESSION['notification_content']="Un nouveau brouillon vient d'être créé !";
+                container("Redirection en cours","Vous allez être redirigé sur le nouveau brouillon.");
+                echo "<script type='text/javascript'>RedirectionJavascript('./edit-article-$id',100);</script>";
+            }
             else
-                container("Article non éditable","Cet article n'existe pas, ou n'est pas visible.");
+            {
+                if(can_article_be_read($id_numero))
+                    edit_article($id_numero);
+                else
+                    container("Article non éditable","Cet article n'existe pas, ou n'est pas visible.");
+            }
         }
+        else{
+            container("Article non éditable","Vous devez être connecté pour accéder à cette interface.");
+        }
+        
      
     ?>
     </body>

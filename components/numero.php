@@ -4,7 +4,7 @@
         global $connect;
         $query = mysqli_query($connect,"SELECT statut FROM `lf_journaux` WHERE `numéro`=$id_numero");
         $res = mysqli_fetch_array($query);
-        if((!$res || $res['statut']!='publié') && !is_admin())
+        if((!$res || $res['statut']!='publié') && !secure_session('admin'))
             return 0;
         return 1;
     }

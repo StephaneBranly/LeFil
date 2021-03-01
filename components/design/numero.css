@@ -11,6 +11,7 @@
 }
 
 #display_numero #title{
+    box-shadow: 0px 5px 15px #26292d;
     text-align: left;
     padding-left: 20px;
     background: linear-gradient(-45deg,#ad3b3b, #e66a6a);

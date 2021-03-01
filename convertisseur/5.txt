@@ -1,2 +1,28 @@
 ALTER TABLE `lf_articles` ADD `statut` VARCHAR(20) NULL DEFAULT 'brouillon' AFTER `numero_journal`; 
 UPDATE `lf_articles` SET `statut` = 'publié';
+
+
+CREATE TABLE `lf_roles` (
+  `login` varchar(25) NOT NULL,
+  `role` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+ALTER TABLE `lf_roles`
+  ADD PRIMARY KEY (`login`,`role`);
+COMMIT;
+
+
+INSERT INTO `lf_roles` (`login`, `role`) VALUES ('branlyst', 'admin'); 
+
+
+
+CREATE TABLE `lf_historique` (
+  `idarticle` int NOT NULL,
+  `login` varchar(25) NOT NULL,
+  `date` date NOT NULL,
+  `color` varchar(6) NOT NULL DEFAULT 'ececec',
+  `content` varchar(300) NOT NULL,
+  `icon` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+COMMIT;

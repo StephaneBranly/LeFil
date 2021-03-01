@@ -36,11 +36,6 @@ function show_clean_string($string)
     return ($url);
 }
 
-function is_admin()
-{
-    return(secure_session('user')=='branlyst' && secure_session('connected'));
-}
-
 function resize_img($image_path,$image_dest,$max_size = 300,$qualite = 100,$type = 'auto',$upload = false)
 {
     // Vérification que le fichier existe
