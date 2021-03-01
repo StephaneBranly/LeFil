@@ -60,7 +60,6 @@
         echo "<div id='right_side' ><div id='article_header'></div><div id='article_content'></div></div>";
         echo "</section></section></div>";
 
-        echo "<script type='text/javascript' src='../components/services/numero.js'></script>";
         echo "<script type='text/javascript'>change_article('$first_to_display','$second_tab_active')</script>";
     }
 ?>

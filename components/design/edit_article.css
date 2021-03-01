@@ -32,6 +32,17 @@
 #new_article .message .details{
     float: right;
 }
+#new_article #comment{
+    width: 100%;
+    text-align: justify;
+    display: inline-block;
+    border: 1px solid #26292d;
+    border-radius: 5px;
+    padding: 15px;
+    max-width: 100%;
+    margin-bottom: 15px;
+    min-width: 100%;
+}
 #new_article #edit_form{
     color: #26292d;
     background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);

@@ -7,8 +7,8 @@
     <head>
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
-            $id_numero = secure_get('numero');
-            $nom_page="Numéro $id_numero";
+            $id_article = secure_get('id');
+            $nom_page="Article $id_article";
             // TODO : ADD DESCRIPTION HERE
             $description_page="TODO";
             include_once("../lib/meta.php");
@@ -21,10 +21,10 @@
     <?php
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
-        if(can_numero_be_read($id_numero))
-            read_numero($id_numero);
+        if(can_article_be_read($id_article))
+            read_article($id_article);
         else
-            container("Numéro non visible","Ce numéro n'existe pas, ou n'est pas visible.");
+            container("Article non visible","Cet article n'existe pas, ou n'est pas visible.");
     ?>
     </body>
 	

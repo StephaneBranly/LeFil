@@ -32,6 +32,11 @@
 
         $status = $res_article['statut'];
         $current_login = secure_session('user');
+        if(isset($_POST['send_comment'])){
+            $message = SQLProtect(secure_post('message'),1);
+            $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),'$message','cecece','icon-comment')");
+            $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','L'article $res_article[identifiant] a reçu un commentaire','icon-comment',0)");
+        }
         if($status=='brouillon' && isset($_POST['brouillon']) && own_article($id)){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'correction' WHERE `identifiant`= $id");
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),'Article soumis à correction','8ff05f','icon-search')");
@@ -252,15 +257,15 @@
         
         echo "<h1 onclick='toggle_section(3);'>Paramètres de publication<i id='section3_icon' class='icon icon_open_close icon-up-open'></i></h1>";
         echo "<div class='togglable_section' id='section3'>
-        <h2>Anonymat auteur : </h2><select $disabled class='anonymat_auteur' name='anonymat_auteur'>";
+        <h2>Anonymat auteur : </h2><select $disabled class='anonymat_auteur' name='anonymat_auteur'><br/>";
         echo ($res_article['anonymat_auteur']) ? "<option name='oui' value='1' selected >Oui</option><option name='non' value='0'>Non</option>"
         : "<option name='oui' value='1'>Oui</option><option name='non' value='0' selected>Non</option>";
-        echo "</select><h2>Reservé abonné : </h2><select $disabled class='reserve_abonne' name='reserve_abonne' >";
+        echo "</select><br/><h2>Reservé abonné : </h2><select $disabled class='reserve_abonne' name='reserve_abonne' >";
         echo ($res_article['réservé_abonné']) ? "<option selected value='1' name='oui'>Oui</option><option value='0' name='non'>Non</option>" :
         "<option name='oui' value='1'>Oui</option><option value='0' selected name='non'>Non</option>";
-        echo "</select><h2>Article publié pour : </h2>
+        echo "</select><br/><h2>Article publié pour : </h2>
         <select class='article_pour' $disabled name='article_pour'>
-        $article_pour</select>
+        $article_pour</select><br/>
         <h2>Rubrique : </h2><select $disabled name='rubrique'>$liste_rubriques</select>
         </div>";
         if(!$disabled)
@@ -272,6 +277,9 @@
         {
             edit_article_feed($res_feed['content'], $res_feed['login'], $res_feed['date'], $res_feed['color']);
         }
+        echo "<div class='link_feed'><span></span></div>";
+        echo "<div class='message' style=\"background-color: #cecece;\" ><form method='post' action=''><textarea  id='comment' name='message'></textarea>
+        <p><button type='submit' class='update_button' name='send_comment' method='post'>Envoyer le commentaire</button></p></form></div>";
         echo "</section>";
     }
 

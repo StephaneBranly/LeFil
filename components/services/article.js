@@ -113,3 +113,12 @@ function convert_article(contenu){
 
     return contenu;
 }
+
+
+function load_article(id_article){
+    let article_content = document.getElementById('article_content');
+    let article_header = document.getElementById('article_header');
+
+    changeArticleHeader(id_article,article_header);
+    changeArticleContent(id_article,article_content);
+}

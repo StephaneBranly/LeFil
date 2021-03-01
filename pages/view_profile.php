@@ -23,8 +23,13 @@
         $user=strtolower(SQLProtect($user,true));
         $query = mysqli_query($connect,"SELECT `iduser` FROM `lf_users` WHERE `iduser`='$user'");
         $res = mysqli_fetch_array($query);
-        if (count($res) != 0)
+        if ($res && count($res) != 0){
             profile($user);
+            $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE `auteur`='$user' ORDER BY `date_parution` DESC");
+            while($res_article = mysqli_fetch_array($query_articles)){
+                article_mini($res_article['identifiant']);
+            }
+        }
         else
         {
             article("Il semblerait que $user n'existe pas...","Vous allez être redirigé dans 5 secondes vers l'accueil");
