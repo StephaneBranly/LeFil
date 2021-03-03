@@ -7,7 +7,8 @@
     <head>
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
-            $nom_page='Accueil';
+            
+            $nom_page="Les Spotted";
             // TODO : ADD DESCRIPTION HERE
             $description_page="TODO";
             include_once("../lib/meta.php");
@@ -18,21 +19,10 @@
     <?php include_once("../components/components_include.php");?>
 	<body id='root'>
     <?php
-        $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];        
+        $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
-        container("Site en construction...","Le site est actuellement en construction, des mises à jours sont faites régulièrement afin de rendre les différentes sections rapidement disponibles. <br/>Désolé de la gène occasionnée.");
-        numeros(4);
-        see_all_numeros_button();
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        echo "<br/>";
-        last_bops_spotted();
+        new_spotted();
+        all_spotted();
     ?>
     </body>
-	
 </html>

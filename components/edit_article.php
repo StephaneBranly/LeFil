@@ -25,7 +25,7 @@
     function edit_article($id)
     {
         global $connect;
-        $buttons_update_status = ['','','','',''];
+        $buttons_update_status = array('','','','','');
 
         $query_article = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE identifiant=$id");
         $res_article = mysqli_fetch_array($query_article);
@@ -153,42 +153,42 @@
 
         if($status=="brouillon"){
             $status_show = "édition <i class='icon icon-edit'></i>";
-            $links = ['current','','','','','','','',''];
+            $links = array('current','','','','','','','','');
             $buttons_update_status[0]= "<form action='' method='post'><button type='submit' value='valider' name='brouillon' />Soumettre</button></form>";
         }else if($status=="correction"){
             $status_show = "en correction <i class='icon icon-search'></i>";
-            $links = ['done','done','current','','','','','',''];
+            $links = array('done','done','current','','','','','','');
             if((secure_session('is_correcteur') || secure_session('is_admin')) && !own_article($id))
                 $buttons_update_status[1]= "<form action='' method='post'><button type='submit' value='valider' name='corrige' />Corrigé</button></form>";
         }else if($status=="validation_admin"){
             $status_show = "en attente de validation par un admin <i class='icon icon-hammer'></i>";
-            $links = ['done','done','done','done','current','','','',''];
+            $links = array('done','done','done','done','current','','','','');
             if(secure_session('is_admin'))
                 $buttons_update_status[2] = "<form action='' method='post'><button type='submit' value='valider' name='valider_admin'/>Valider</button><br/><button type='submit' value='refuser' name='refuser_admin'>Refuser</button></form>";
         }else if($status=="validation_pvdc"){
             $status_show = "en attente de validation par le PVDC <i class='icon icon-hammer'></i>";
-            $links = ['done','done','done','done','done','done','current','',''];
+            $links = array('done','done','done','done','done','done','current','','');
             if(secure_session('is_pvdc') || secure_session('is_admin'))
                 $buttons_update_status[3] = "<form action='' method='post'><button type='submit' value='valider' name='valider_pvdc' />Valider</button><br/><button type='submit' value='refuser' name='refuser_pvdc'>Refuser</button></form>";
         }else if($status=="attente_publication"){
             $status_show = "en attente de publication <i class='icon icon-edit'></i>";
-            $links = ['done','done','done','done','done','done','done','done','current'];
+            $links = array('done','done','done','done','done','done','done','done','current');
             if(secure_session('is_admin') && !$res_article['numero_journal'])
                 $buttons_update_status[4] = "<form action='' method='post'><button type='submit' value='valider' name='publier'/>Publier</button></form>";
         }else if($status=="publié"){
             $status_show = "publié <i class='icon icon-note'></i>";
-            $links = ['done','done','done','done','done','done','done','done','done'];
+            $links = array('done','done','done','done','done','done','done','done','done');
         }else if($status=="refusé_admin"){
             $status_show = "refusé <i class='icon icon-cancel-circled2'></i>";
-            $links = ['done','done','done','done','refused','','','',''];
+            $links = array('done','done','done','done','refused','','','','');
         }else if($status=="refusé_pvdc"){
             $status_show = "refusé <i class='icon icon-cancel-circled2'></i>";
-            $links = ['done','done','done','done','done','done','refused','',''];
+            $links = array('done','done','done','done','done','done','refused','','');
             if(secure_session('is_pvdc') || secure_session('is_admin'))
                 $buttons_update_status[3] = "<form action='' method='post'><button type='submit' value='valider' name='valider_pvdc' />Valider</button></form>";
         }else{
                 $status_show = "NaN";
-                $links = ['','','','','','','','',''];
+                $links = array('','','','','','','','','');
         };
 
         $disabled = can_article_be_edited($id) ? "" : "disabled";

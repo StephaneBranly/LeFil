@@ -28,7 +28,7 @@ function article_mini($id_article, $show_status = false){
         if($show_status){
             echo "<div class='status_article'>Statut : $res[statut]</div>";
         }
-        echo "<a href='../article-$id_article'><section class='miniarticle'><h1>$res[titre]</h1><h2>$res[sous_titre]</h2></section></a>";
+        echo "<a href='../edit-article-$id_article'><section class='miniarticle'><h1>$res[titre]</h1><h2>$res[sous_titre]</h2></section></a>";
         echo "</div>";
     }
 }

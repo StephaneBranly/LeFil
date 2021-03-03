@@ -1,0 +1,95 @@
+#last_bops_spotted{
+    background-color: #FFFFFF;
+    width: 100%;
+    vertical-align: top;
+    display: flex;
+    justify-content: center;
+}
+#last_bops_spotted #bops,
+#last_bops_spotted #spotted{
+    display: flexbox;
+    width: 40%;
+    border: 2px solid #26292d;
+    border-radius: 5px;
+    margin: 15px;
+}
+#last_bops_spotted h1{
+    color: #FFFFFF;
+    border-bottom: 2px solid #26292d;
+    background-color: #26292d;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.wave-container-bs{
+    width: 100%;
+    height: 50px;
+}
+.wave-top {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-image: url(../../ressources/images/wave.png);
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    transform: rotate(180deg);
+}
+.wave-bottom {
+    width: 100%;
+    height: 100%;
+    left: 100px;
+    background-image: url(../../ressources/images/wave.png);
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+}
+
+#last_bops_spotted .spotted-mini,
+#last_bops_spotted .bops-mini{
+    display: inline-block;
+    text-align: justify;
+    color: #26292d;
+    padding: 10px;
+    margin-top: 10px;
+    width: 90%;
+}
+#last_bops_spotted .bops-mini{
+    text-align: left !important;
+    border-left: 5px solid #26292d;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+#last_bops_spotted .spotted-mini span,
+#last_bops_spotted .bops-mini span{
+    display: inline-block;
+}
+#last_bops_spotted .bops-mini .uv{
+    background-color: #26292d;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+#last_bops_spotted .spotted-mini .content
+{
+    border-left: 5px solid rgb(87, 87, 87);
+    padding-left: 10px;
+}
+#last_bops_spotted .bops-mini .content{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+#last_bops_spotted .spotted-mini .date,
+#last_bops_spotted .bops-mini .date{
+    text-align: right;
+    width: 100%;
+    margin-top: 10px;
+}
+#last_bops_spotted .button-section
+{
+    background-color: #26292d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+}

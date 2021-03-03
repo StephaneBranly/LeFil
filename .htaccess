@@ -3,6 +3,8 @@ ErrorDocument 404 /pages/error404.php
 
 RewriteEngine on
 RewriteRule ^wiki/?$ pages/wiki.php [L] 
+RewriteRule ^bop_s/?$ pages/bops.php [L] 
+RewriteRule ^spotted/?$ pages/spotted.php [L] 
 RewriteRule ^index/?$ pages/index.php [L] 
 RewriteRule ^accueil/?$ pages/index.php [L] 
 RewriteRule ^login/(?)ticket=(.)*$ pages/log.php?ticket=$1 [L] 
