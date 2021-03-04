@@ -1,3 +1,4 @@
+@media all{
 #numeros #numero_before{
     padding-top: 50px;
    font-family: cursive;
@@ -164,3 +165,75 @@
 #numeros .numero .left-side h2 span:last-child{
     font-family: acumin-pro, sans-serif;
 } 
+}
+@media all and (max-device-width: 480px) { 
+    #numeros .numero{
+        margin: 2% auto;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    
+    #numeros .numero .container .book {
+        width: 420px;
+        height: 594px;
+    }
+
+    
+    #numeros .numero .container .front > div {
+        width: 420px;
+        height: 594px;
+    }
+    
+    #numeros .numero .container .left-side{
+        width: 20px;
+        left: -80px;
+        height: 594px;
+    }
+    
+    #numeros .numero .cover .img_cover{
+        width: 420px;
+        height: 594px;
+    }
+    #numeros .numero .cover .logo_cover{
+        top: 60px;
+        width: 160px;
+        height: auto;
+    }
+    
+    #numeros .numero .cover .num-down{
+        top: 130px;
+        left: -190px;
+    }
+    
+    #numeros .numero .numero{
+        top: 490px;
+        right: 40px;
+        padding: 10px;
+    }
+    
+    #numeros .numero .container .front:after {
+        top: 2px;
+        bottom: 2px;
+        left: -2px;
+        width: 2px;
+    }
+    
+    #numeros .numero .container .cover:after {
+        top: 0;
+        left: 20px;
+        bottom: 0;
+        width: 6px;
+    }
+    
+    
+    #numeros .numero .container h2 {
+        width: 420px;
+        height: 80px;
+        padding-right: 20px;
+    }
+    
+    #numeros .numero .left-side h2 span:first-child {
+        padding-right: 40px;
+    }
+    
+}

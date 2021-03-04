@@ -1,3 +1,4 @@
+@media all{
 #last_bops_spotted{
     background-color: #FFFFFF;
     width: 100%;
@@ -7,7 +8,8 @@
 }
 #last_bops_spotted #bops,
 #last_bops_spotted #spotted{
-    display: flexbox;
+    display: flex;
+    flex-direction: column;
     width: 40%;
     border: 2px solid #26292d;
     border-radius: 5px;
@@ -48,14 +50,12 @@
     display: inline-block;
     text-align: justify;
     color: #26292d;
-    padding: 10px;
     margin-top: 10px;
-    width: 90%;
+    padding: 10px;
+    width: auto;
 }
 #last_bops_spotted .bops-mini{
     text-align: left !important;
-    border-left: 5px solid #26292d;
-    padding-left: 0px;
     padding-top: 0px;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -63,13 +63,17 @@
 #last_bops_spotted .spotted-mini span,
 #last_bops_spotted .bops-mini span{
     display: inline-block;
+
 }
 #last_bops_spotted .bops-mini .uv{
     background-color: #26292d;
+    display: inline-block;
     color: #FFFFFF;
     width: 100%;
-    padding: 10px;
-    font-size: 20px;
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: larger;
 }
 #last_bops_spotted .spotted-mini .content
 {
@@ -77,8 +81,8 @@
     padding-left: 10px;
 }
 #last_bops_spotted .bops-mini .content{
-    padding-left: 10px;
     padding-top: 10px;
+    width: 100%;
 }
 #last_bops_spotted .spotted-mini .date,
 #last_bops_spotted .bops-mini .date{
@@ -92,4 +96,26 @@
     padding-top: 10px;
     padding-bottom: 10px;
     margin: 0px;
+}
+}
+@media all and (max-device-width: 480px) {
+    #last_bops_spotted{
+        flex-direction: column;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+#last_bops_spotted #bops,
+#last_bops_spotted #spotted{
+    border: 4px solid #26292d;
+    border-radius: 15px;
+    width: auto;
+    font-size: larger;
+}
+#last_bops_spotted .spotted-mini{
+    margin-top: 70px;
+}
+#last_bops_spotted .button-section{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 }

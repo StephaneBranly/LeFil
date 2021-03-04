@@ -8,7 +8,7 @@
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
             $id_numero = secure_get('numero');
-            $nom_page="Edition article n*$id_numero";
+            $nom_page="Edition article $id_numero";
             // TODO : ADD DESCRIPTION HERE
             $description_page="TODO";
             include_once("../lib/meta.php");

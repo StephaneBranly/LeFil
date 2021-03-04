@@ -1,3 +1,4 @@
+@media all{
 .section_container{
     border: 2px solid white;
     box-shadow: 2px 2px 10px #26292d inset;
@@ -8,4 +9,12 @@
 
 .content_section{
     color: white;
+}
+}
+@media all and (max-device-width: 480px) {
+    .section_container{
+        border-radius: 15px;
+        width: 95%;
+        border: 5px solid white;
+    } 
 }

@@ -1,3 +1,4 @@
+@media all {
 #new_bops{
     display: inline-block;
     width: 40%;
@@ -97,4 +98,8 @@
     text-align: right;
     width: 100%;
     margin-top: 10px;
+}
+}
+@media all and (max-device-width: 480px) {
+
 }

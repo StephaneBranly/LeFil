@@ -1,3 +1,4 @@
+@media all{
 .button_link{
     border: 2px solid white;
     padding: 10px;
@@ -11,4 +12,13 @@
 .button_link:hover{
     box-shadow: 5px 5px 0px white;
     transform: translateX(-5px) translateY(-5px);
+}
+}
+@media all and (max-device-width: 480px) {
+    .button_link{
+        font-size: 60px;
+        border: 3px solid white;
+        box-shadow: 5px 5px 0px white;
+        transform: translateX(-5px) translateY(-5px);
+    }
 }
