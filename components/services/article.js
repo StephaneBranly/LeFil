@@ -50,7 +50,7 @@ function convert_article(contenu){
     while(p>=0){
         var note = contenu.substr(p+2,contenu.search(/<\^/)-p-2);
         notebaspage++;
-        contenu = contenu.replace("^>"+note+"<^"," <a style=\"font-size:60%;vertical-align:super;\" href=\"#note_"+notebaspage+"\"> ["+notebaspage+"] </a>");
+        contenu = contenu.replace("^>"+note+"<^"," <a style=\"font-size:60%;vertical-align:super;\" href=\""+window.location.href+"#note_"+notebaspage+"\"> ["+notebaspage+"] </a>");
         baspage += "\nsmp;note_"+notebaspage+"\">["+notebaspage+"] "+note;
         p = contenu.search(/\^>/);
     }

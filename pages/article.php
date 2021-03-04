@@ -8,6 +8,8 @@
         <?php
             // TODO : TO DISCUSS ABOUT ANALYTICS include_once("../lib/google_analytics.php");
             $id_article = secure_get('id');
+            if(!$id_article)
+                $id_article = secure_get('paper');
             $query = mysqli_query($connect,"SELECT `titre` FROM `lf_articles` WHERE `identifiant`=$id_article");
             $res = mysqli_fetch_array($query);
             if($res)
