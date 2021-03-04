@@ -15,7 +15,12 @@
                 echo "<h1 class='subtitle'>$res[sous_titre]</h1>";
             if(!$res['anonymat_auteur'])
             {
-                echo "<span class='authors'>Ecrit par $res[auteur]</span>";
+                $query_auteur = mysqli_query($connect,"SELECT `username` FROM `lf_users` WHERE `iduser`='$res[auteur]'");
+                $res_auteur = mysqli_fetch_array($query_auteur);
+                if($res_auteur)
+                    echo "<span class='authors'>Ecrit par $res_auteur[username]</span>";
+                else
+                    echo "<span class='authors'>Ecrit par $res[auteur]</span>";
             }
         }
         else

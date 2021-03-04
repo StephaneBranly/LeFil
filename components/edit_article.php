@@ -280,7 +280,11 @@
             $query_feed = mysqli_query($connect,"SELECT * FROM `lf_historique` WHERE idarticle = $id ORDER BY `date` ASC");
             while($res_feed = mysqli_fetch_array($query_feed))
             {
-                edit_article_feed($res_feed['content'], $res_feed['login'], $res_feed['date'], $res_feed['color']);
+                if($res_feed['login'] == $res_article['auteur'] && $res_article['anonymat_auteur'] && (($res_feed['color'] != "8ff05f" || ($res_feed['content']=="Article soumis à correction"|| $res_feed['content']=="Article corrigé, soumis a la validation d'un admin")) && $res_feed['color'] != "f44a4a"))
+                    $autor_comment = "auteur article";
+                else
+                    $autor_comment = $res_feed['login'];
+                edit_article_feed($res_feed['content'], $autor_comment, $res_feed['date'], $res_feed['color']);
             }
             echo "<div class='link_feed'><span></span></div>";
             echo "<div class='message' style=\"background-color: #cecece;\" ><form method='post' action=''><textarea  id='comment' name='message'></textarea>
