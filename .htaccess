@@ -19,3 +19,6 @@ RewriteRule ^profile/([a-zA-Z0-9_-]*)-edit$ pages/view_profile.php?user=$1&edit=
 RewriteRule ^profile/([a-zA-Z0-9_-]*)$ pages/view_profile.php?user=$1 [L] 
 RewriteRule ^subscribe/([^/]+)/([^/]+)$ pages/mailing_list.php?action=subscribe&user=$1&mailing_list=$2 [L] 
 RewriteRule ^unsubscribe/([^/]+)/([^/]+)/([0-9]+)$ pages/mailing_list.php?action=unsubscribe&user=$1&mailing_list=$2&code=$3 [L] 
+RewriteRule ^admin/([a-zA-Z0-9_-]*)$ admin/$1.php [L] 
+RewriteRule ^admin/?$ admin/home.php [L]
+RewriteRule ^gestion-numeros/?$ pages/gestion_numeros.php [L]

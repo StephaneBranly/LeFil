@@ -38,7 +38,7 @@
                     $_SESSION['username']=$username;
                     $query = mysqli_query($connect,"UPDATE `lf_users` 
                     SET `username` = '$username',
-                     `mail` = '$mail',
+                     `mail` = '$mail'
                      WHERE iduser = '$user'");                    
                     echo "<script type='text/javascript'>RedirectionJavascript('profile/$user',100);</script>";
                     $_SESSION['notification_icon']='icon-floppy';
@@ -81,8 +81,12 @@
                 </table>
                 </section>";
 
+                echo "<section>";
                 if($user==secure_session('user') && secure_session('connected'))
-                    echo "<section><a class='button_link' href='../edit-article-new'>Rédiger un nouvel article</a></section>";
+                    echo "<a class='button_link' href='../edit-article-new'>Rédiger un nouvel article</a>";
+                if($user==secure_session('user') && secure_session('is_admin'))
+                    echo "<a class='button_link' href='../gestion-numeros'>Gestion des numéros</a>";
+                echo "</section>";
             }
         }
     } 

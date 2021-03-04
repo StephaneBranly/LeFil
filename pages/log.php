@@ -46,13 +46,13 @@
             $res_pvdc = mysqli_fetch_array($query_pvdc);
             $_SESSION['is_pvdc']=($res_pvdc && count($res_pvdc));
 
-            if (count($res) == 0)
+            if(count($res) == 0)
             {
                 $_SESSION['notification_icon']='icon-cup';
                 $_SESSION['username']=$user;
                 $_SESSION['notification_content']="Bienvenue $user ! Ton compte a été créé !";
                 $query = mysqli_query($connect,"INSERT INTO `lf_users` (iduser,username,creation_account,last_connexion,mail,mail_news) VALUES ('$user','$user','$date','$date','$mail',FLOOR( 10000 + RAND( ) *89999 ))");
-                echo "<script type='text/javascript'>RedirectionJavascript('profile/$user-edit',2000);</script>";
+                echo "<script type='text/javascript'>RedirectionJavascript('profile/$user-edit',1000);</script>";
             }
             else
             {
@@ -62,9 +62,9 @@
                 $query = mysqli_query($connect,"UPDATE `lf_users` SET `last_connexion` = '$date' WHERE iduser = '$user'");
                 $last_page='../..'.secure_session('last_uri');
                 if(secure_session('last_uri'))
-                    echo "<script type='text/javascript'>setTimeout(\"{document.location.href='$last_page';};\", 2000);</script>";
+                    echo "<script type='text/javascript'>setTimeout(\"{document.location.href='$last_page';};\", 1000);</script>";
                 else
-                    echo "<script type='text/javascript'>RedirectionJavascript('accueil',2000);</script>";
+                    echo "<script type='text/javascript'>RedirectionJavascript('accueil',1000);</script>";
             }
         }
     }

@@ -33,7 +33,7 @@
             $second_tab_active = "active";
         }
 
-        $query = mysqli_query($connect,"SELECT identifiant, titre FROM `lf_articles` WHERE `numero_journal`=$numero");
+        $query = mysqli_query($connect,"SELECT identifiant, titre FROM `lf_articles` WHERE `numero_journal`=$numero AND `statut`='publié'");
         $index = 0;
         while($res = mysqli_fetch_array($query))
         {

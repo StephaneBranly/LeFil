@@ -14,6 +14,7 @@
 <link href="../components/design/button_link.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/container.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/edit_article.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/gestion_numeros.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/last_bops_spotted.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/notifications.css" rel="stylesheet" media="all" type="text/css">
@@ -27,6 +28,7 @@
     include_once("../components/bops.php");
     include_once("../components/container.php");
     include_once("../components/edit_article.php");
+    include_once("../components/gestion_numeros.php");
     include_once("../components/header.php");
     include_once("../components/last_bops_spotted.php");
     include_once("../components/notifications.php");

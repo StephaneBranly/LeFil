@@ -1,0 +1,30 @@
+#gestion_numeros{
+    border: 2px solid white;
+    box-shadow: 2px 2px 10px #26292d inset;
+    border-radius: 5px;
+    width: 60%;
+    display: inline-block;
+    color: #FFFFFF;
+}
+
+#gestion_numeros h1{
+    background-color: #FFFFFF;
+    color: #26292d;
+
+}
+#gestion_numeros button{
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ececec;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding : 5px;
+    font-size: 20px;
+    color: #ececec;
+    transition: all 0.1s;
+}
+#gestion_numeros button:hover{
+    box-shadow: 5px 5px 0px #ececec;
+    transform: translateX(-5px) translateY(-5px);
+    cursor: pointer;
+}

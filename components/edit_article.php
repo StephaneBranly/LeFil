@@ -41,7 +41,7 @@
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'correction' WHERE `identifiant`= $id");
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),'Article soumis à correction','8ff05f','icon-search')");
             $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] soumis à correction','icon-lightbulb',0)");
-        }else if($status=='correction' && isset($_POST['corrige']) && (secure_session('is_correcteur') || secure_session('is_admin')) && !own_article($id)){
+        }else if($status=='correction' && isset($_POST['corrige']) && (secure_session('is_admin') || own_article($id))){
             $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'validation_admin' WHERE `identifiant`= $id");
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article corrigé, soumis a la validation d'un admin\",'8ff05f','icon-hammer')");
             $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] corrigé','icon-lightbulb',0)");
@@ -62,7 +62,7 @@
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Article refusé par le PVDC\",'f44a4a','icon-note')");
             $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] refusé par le PVDC','icon-lightbulb',0)");
         }else if($status=='attente_publication' && isset($_POST['publier']) && secure_session('is_admin') && !$res_article['numero_journal']){
-            $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'publié' WHERE `identifiant`= $id");
+            $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'publié', `date_parution` = NOW() WHERE `identifiant`= $id");
             $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"L'article a été publié\",'8ff05f','icon-note')");
             $query_notif = mysqli_query($connect,"INSERT INTO `lf_notifications`(`date`, `iduser`, `content`,`icon`,`viewed`) VALUES (NOW(),'$res_article[auteur]','Article $res_article[identifiant] publié','icon-lightbulb',0)");
         }
@@ -97,8 +97,12 @@
                 $numero_fil = $article_pour;
             }
             if($concours != $res_article['id_concours']) $modifications .= "ID concours ; ";
-            if($numero_fil != $res_article['numero_journal']) $modifications .= "numéro fil ; ";
-
+            if($numero_fil != $res_article['numero_journal']){
+                if($status=='publié')
+                    $numero_fil = $res_article['numero_journal'];
+                else
+                    $modifications .= "numéro fil ; ";
+            }
             if($genre=='---') $genre = '';
             if($rubrique=='---') $rubrique = 0;
             if($registre=='---') $registre = '';
@@ -158,7 +162,7 @@
         }else if($status=="correction"){
             $status_show = "en correction <i class='icon icon-search'></i>";
             $links = array('done','done','current','','','','','','');
-            if((secure_session('is_correcteur') || secure_session('is_admin')) && !own_article($id))
+            if(secure_session('is_admin') || own_article($id))
                 $buttons_update_status[1]= "<form action='' method='post'><button type='submit' value='valider' name='corrige' />Corrigé</button></form>";
         }else if($status=="validation_admin"){
             $status_show = "en attente de validation par un admin <i class='icon icon-hammer'></i>";
@@ -272,14 +276,16 @@
             echo "<p><button type='submit' class='update_button' name='update_button' method='post'>Mettre à jour</button></p>";
 
         echo "</form>";
-        $query_feed = mysqli_query($connect,"SELECT * FROM `lf_historique` WHERE idarticle = $id ORDER BY `date` ASC");
-        while($res_feed = mysqli_fetch_array($query_feed))
-        {
-            edit_article_feed($res_feed['content'], $res_feed['login'], $res_feed['date'], $res_feed['color']);
+        if($status!="publié" || own_article($id) || secure_session('is_admin')){
+            $query_feed = mysqli_query($connect,"SELECT * FROM `lf_historique` WHERE idarticle = $id ORDER BY `date` ASC");
+            while($res_feed = mysqli_fetch_array($query_feed))
+            {
+                edit_article_feed($res_feed['content'], $res_feed['login'], $res_feed['date'], $res_feed['color']);
+            }
+            echo "<div class='link_feed'><span></span></div>";
+            echo "<div class='message' style=\"background-color: #cecece;\" ><form method='post' action=''><textarea  id='comment' name='message'></textarea>
+            <p><button type='submit' class='update_button' name='send_comment' method='post'>Envoyer le commentaire</button></p></form></div>";
         }
-        echo "<div class='link_feed'><span></span></div>";
-        echo "<div class='message' style=\"background-color: #cecece;\" ><form method='post' action=''><textarea  id='comment' name='message'></textarea>
-        <p><button type='submit' class='update_button' name='send_comment' method='post'>Envoyer le commentaire</button></p></form></div>";
         echo "</section>";
     }
 
