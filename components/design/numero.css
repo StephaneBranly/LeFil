@@ -1,3 +1,4 @@
+@media all {
 #display_numero{
     margin-top: 50px;
     background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);
@@ -18,7 +19,6 @@
 	background-size: 200% 200%;
 	animation: animate-bg-gradient 15s ease infinite;
     font-size: 50px;
-    font-family: cursive;
     color:#26292d;
     border-bottom: 2px solid #26292d;
 }
@@ -31,7 +31,6 @@
     vertical-align: top;
 }
 #display_numero #left_side .article{
-    font-family: cursive;
     color: #26292d;
     padding:10px;
     border-bottom: 1px solid #26292d;
@@ -89,4 +88,42 @@
 }
 .button_pdf_dl:hover .icon{
     transform: rotate(10deg);
+}
+}
+@media all and (max-device-width: 480px) {
+    #display_numero{
+        border-radius: 15px;
+        width: 98%;
+    }
+    #display_numero #title{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    #display_numero #left_side{
+        width: 100%;
+        height: auto;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        padding-bottom: 50px;
+        border-bottom: 5px solid rgb(255, 104, 104);
+    }
+    #display_numero #left_side .article{
+        border-bottom: 2px solid #26292d;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    #display_numero #left_side .article.active{
+        border-left: 0px solid rgba(0,0,0,0);
+        border-right: 0px solid rgba(0,0,0,0);
+        background-color: rgb(255, 104, 104);
+        transform: translateX(0px);
+    }
+    #display_numero #right_side{
+        display: inline-block;
+        width: 95%;
+        padding: 0px;
+    }
+    #display_numero #right_side #article_header{
+        border-radius: 0px;
+    }
 }

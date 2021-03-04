@@ -29,7 +29,7 @@
 }
 
 #new_bops button{
-    border: 2px solid #FFFFFF;;
+    border: 2px solid #FFFFFF;
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px;
@@ -51,11 +51,10 @@
 #bops_only{
     display: inline-block;
     width: 70%;
-    border: 2px solid #26292d;
     border-radius: 5px;
-    margin: 15px;
     border-radius: 5px;
     margin-top: 100px;
+    text-align: center;
 }
 #bops_only h1{
     color: #FFFFFF;
@@ -86,13 +85,13 @@
     color: #FFFFFF;
     width: 100%;
     padding: 10px;
-    font-size: 20px;
+    font-size: larger;
 }
 #bops_only .bops-unit .content{
     padding-left: 10px;
     padding-top: 10px;
     border-left: 3px solid #FFFFFF;
-
+    text-align: justify;
 }
 #bops_only .bops-unit .date{
     text-align: right;
@@ -101,5 +100,33 @@
 }
 }
 @media all and (max-device-width: 480px) {
-
+    #new_bops{
+        width: 95%;
+        font-size: larger;
+        border: 6px solid #FFFFFF;
+        border-radius: 15px;
+    }
+    #new_bops input, #new_bops textarea, #new_bops button {
+        width: auto;
+        font-size: larger;
+    }
+    #new_bops button{
+        border: 4px solid #FFFFFF;
+        box-shadow: 5px 5px 0px #FFFFFF;;
+        transform: translateX(-5px) translateY(-5px);
+    }
+    #bops_only .bops-unit{
+        border: 4px solid #FFFFFF;
+        border-radius: 15px;
+        display: inline-block;
+        width: 95%;
+    }
+    #bops_only{
+        width: 100%;
+        display: inline-block;
+        font-size: larger;
+    }
+    #bops_only .bops-unit .content{
+        border-left: 6px solid #FFFFFF;
+    }
 }

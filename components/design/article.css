@@ -1,3 +1,5 @@
+
+@media all {
 #container_display_article{
 	margin-top: 50px;
     background: linear-gradient(45deg,  #ececec 0%, #ffffff 100%);
@@ -36,7 +38,6 @@
 }
 .miniarticle h1{
 	color:rgb(255, 104, 104);
-	font-size:30px;
 	margin: 0px;
 	padding: 0px;
 	display: inline-block;
@@ -44,7 +45,6 @@
 }
 .miniarticle h2{
 	color:rgb(92, 92, 92);
-	font-size:20px;
 	margin: 0px;
 	padding: 0px;
 	display: inline-block;
@@ -52,7 +52,6 @@
 }
 #article_header h1.title{
 	color:rgb(255, 104, 104);
-	font-size:30px;
 	margin: 0px;
 	padding: 0px;
 	display: inline-block;
@@ -60,7 +59,6 @@
 }
 #article_header h1.subtitle{
 	color:rgb(92, 92, 92);
-	font-size:20px;
 	margin: 0px;
 	padding: 0px;
 	display: inline-block;
@@ -142,3 +140,24 @@
 .c-green{ color: green;}		.c-chartreuse{ color: chartreuse;}	.c-springgreen{ color: springgreen;}.c-seagreen{ color: seagreen;}
 .c-blue{ color: blue;}			.c-royalblue{ color: royalblue;}	.c-turquoise{ color: turquoise;}	.c-navy{ color: navy;}	
 .c-violet{ color: violet;}		.c-pink{ color: pink;}				.c-purple{ color: purple;}			.c-palevioletred{ color: palevioletred;}
+}
+@media all and (max-device-width: 480px) {
+	#container_display_article{
+		width: 98%;
+		margin: 0px;
+		padding: 0px;
+	}
+	#article_header .title{
+		font-size: larger;
+	}
+	#article_header .subtitle{
+		font-size: smaller;
+	}
+	#article_content{
+		padding: 10px;
+		font-size: larger;
+	}
+	#container_display_article #article_content{
+		padding: 30px;
+	}
+}

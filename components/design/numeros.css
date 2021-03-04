@@ -1,7 +1,6 @@
 @media all{
 #numeros #numero_before{
     padding-top: 50px;
-   font-family: cursive;
    color:#ececec;
 }
 
@@ -167,6 +166,9 @@
 } 
 }
 @media all and (max-device-width: 480px) { 
+    #numeros{
+        margin-bottom: 100px;
+    }
     #numeros .numero{
         margin: 2% auto;
         padding-left: 2%;
