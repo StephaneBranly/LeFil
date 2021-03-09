@@ -5,8 +5,7 @@
     $casUrl = "https://cas.utc.fr/cas/";
     require_once('../lib/xml.php');
     require_once('../lib/cas.php');
-    $_SESSION['user'] = 'branlyst';
-    $_SESSION['connected'] = true;
+
     if(isset($_GET['ticket']) || secure_get('section') == 'login')
     {
         $cas = new Cas($casUrl, $myUrl);

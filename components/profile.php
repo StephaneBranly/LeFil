@@ -85,7 +85,10 @@
                 if($user==secure_session('user') && secure_session('connected'))
                     echo "<a class='button_link' href='../edit-article-new'>Rédiger un nouvel article</a>";
                 if($user==secure_session('user') && secure_session('is_admin'))
+                {
                     echo "<a class='button_link' href='../gestion-numeros'>Gestion des numéros</a>";
+                    echo "<a class='button_link' href='../gestion-roles'>Gestion des roles</a>";
+                }
                 echo "</section>";
             }
         }

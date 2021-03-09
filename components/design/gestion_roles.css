@@ -1,0 +1,35 @@
+
+#gestion_roles{
+    display: inline-block;
+    width: 70%;
+    text-align: center;
+}
+#gestion_roles div{
+    display: inline-block;
+    margin: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 15px;
+}
+#gestion_roles .role{
+    display: inline-block;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+}
+#gestion_roles .login{
+    display: inline-block;
+    color: #FFFFFF;
+}
+#gestion_roles .role.pvdc{
+    background-color: #fffb01;
+}
+#gestion_roles .role.admin{
+    background-color: #ea01ff;
+}
+#gestion_roles .role.correcteur{
+    background-color: #01ff88;
+}
+#gestion_roles .role.redacteur{
+    background-color: #01c4ff;
+}

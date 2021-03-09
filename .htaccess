@@ -23,3 +23,4 @@ RewriteRule ^unsubscribe/([^/]+)/([^/]+)/([0-9]+)$ pages/mailing_list.php?action
 RewriteRule ^admin/([a-zA-Z0-9_-]*)$ admin/$1.php [L] 
 RewriteRule ^admin/?$ admin/home.php [L]
 RewriteRule ^gestion-numeros/?$ pages/gestion_numeros.php [L]
+RewriteRule ^gestion-roles/?$ pages/roles.php [L]

@@ -5,6 +5,7 @@
         if(secure_session('connected') && secure_session('user')==$user)
         {
             echo "<section id='articles_profile'>";
+            echo "<h1 id='name_section'>Gestion des articles :</h1>";
             $tabs = "";
 
             $tabs .= "<span onclick=\"change_article_tab_profile_user('mes-articles');\" id='mes-articles' class='active'>Mes articles</span>";
@@ -73,10 +74,10 @@
         else
         {
             echo "<section id='articles_profile'>";
-            echo "<h1>Les articles de cet auteur :</h1>";
-            $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE `auteur`='$user' ORDER BY `date_parution` DESC");
+            echo "<h1 id='name_section'>Les articles de cet auteur :</h1>";
+            $query_articles = mysqli_query($connect,"SELECT `identifiant`, `statut` FROM `lf_articles` WHERE `auteur`='$user' ORDER BY `date_parution` DESC");
             while($res_article = mysqli_fetch_array($query_articles)){
-                article_mini($res_article['identifiant']);
+                article_mini($res_article['identifiant'],$res_article['statut']!='publié');
             }
             echo "</section>";
         }
