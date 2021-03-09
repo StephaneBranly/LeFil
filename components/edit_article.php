@@ -115,7 +115,7 @@
             `courte_description` = \"$description_courte\", `texte_contenu` = \"$contenu\",
              `image_couverture` = \"$image_couverture\", `id_rubrique` = $rubrique, 
              `id_registre` = \"$registre\", `id_genre` = \"$genre\", `id_concours` = \"$concours\", `numero_journal` = $numero_fil, 
-             `réservé_abonné` = $reserve_abonne, `anonymat_auteur` = $anonymat_auteur WHERE `lf_articles`.`identifiant` = $id"); 
+             `réservé_abonné` = $reserve_abonne, `anonymat_auteur` = $anonymat_auteur, `date_parution` = NOW() WHERE `lf_articles`.`identifiant` = $id"); 
             if($modifications)
                 $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id,'$current_login',NOW(),\"Des modifications ont été faites : $modifications\",'f9e728','icon-pen')");
         }
