@@ -21,6 +21,8 @@
         $_SESSION['last_uri'] = $_SERVER['REQUEST_URI'];
         _header();
         numeros();
+        arrow_up();    
+        _footer();
     ?>
     </body>
 	

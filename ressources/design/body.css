@@ -4,19 +4,14 @@
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    /* background-color: rgb(230, 230, 230);*/
     background-color: #26292d; 
-    padding-bottom: 150px;
     font-size: xx-large;
   }
 }
 
 @media all and (min-device-width: 480px) {
   body {
-    /*background-size: 130px;
-    background-image: url("../images/bg.png");
-    background-repeat: repeat;*/
-    padding-bottom: 300px;
     font-size: 1em;
+    scroll-behavior: smooth;
   }
 }

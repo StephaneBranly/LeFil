@@ -33,6 +33,8 @@
             container("Il semblerait que $user n'existe pas...","Vous allez être redirigé dans 5 secondes vers l'accueil");
             echo "<script type='text/javascript'>RedirectionJavascript('accueil',5000);</script>";
         }
+        _footer();
+
         ?>
     </body>
 	

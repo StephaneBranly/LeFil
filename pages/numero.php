@@ -25,6 +25,8 @@
             read_numero($id_numero);
         else
             container("Numéro non visible","Ce numéro n'existe pas, ou n'est pas visible.");
+        arrow_up();    
+        _footer();
     ?>
     </body>
 	

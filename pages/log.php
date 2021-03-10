@@ -105,7 +105,7 @@
             _header(true);
             container('Redirection','Vous allez être redirigé...');
             $_SESSION['notification_new']=true;
-
+            _footer();
         ?>
     </body>
 

@@ -47,7 +47,7 @@
             container("Article non éditable","Vous devez être connecté pour accéder à cette interface.");
         }
         
-     
+        _footer();
     ?>
     </body>
 	

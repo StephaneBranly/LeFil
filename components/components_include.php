@@ -9,12 +9,14 @@
 <link href="../ressources/fontello/css/animation.css" rel="stylesheet" media="all" type="text/css">
 
 <link href="../components/design/animations.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/arrow_up.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/article.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/articles_profile.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/bops.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/button_link.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/container.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/edit_article.css" rel="stylesheet" media="all" type="text/css">
+<link href="../components/design/footer.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/gestion_roles.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/gestion_numeros.css" rel="stylesheet" media="all" type="text/css">
 <link href="../components/design/header.css" rel="stylesheet" media="all" type="text/css">
@@ -26,11 +28,13 @@
 <link href="../components/design/spotted.css" rel="stylesheet" media="all" type="text/css">
 
 <?php       
+    include_once("../components/arrow_up.php");
     include_once("../components/article.php");
     include_once("../components/articles_profile.php");
     include_once("../components/bops.php");
     include_once("../components/container.php");
     include_once("../components/edit_article.php");
+    include_once("../components/footer.php");
     include_once("../components/gestion_numeros.php");
     include_once("../components/gestion_roles.php");
     include_once("../components/header.php");
@@ -43,6 +47,7 @@
     include_once("../components/spotted.php");
 ?>
 
+<script type="text/javascript" src="../components/services/arrow_up.js"></script>
 <script type="text/javascript" src="../components/services/article.js"></script>
 <script type="text/javascript" src="../components/services/articles_profile.js"></script>
 <script type="text/javascript" src="../components/services/edit_article.js"></script>

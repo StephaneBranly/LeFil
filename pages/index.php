@@ -32,6 +32,8 @@
         echo "<br/>";
         echo "<br/>";
         last_bops_spotted();
+        arrow_up();    
+        _footer();
     ?>
     </body>
 	

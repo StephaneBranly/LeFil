@@ -23,6 +23,8 @@
         _header();
         new_bops();
         all_bops();
+        arrow_up();    
+        _footer();
     ?>
     </body>
 </html>

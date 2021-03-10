@@ -23,6 +23,8 @@
         _header();
         new_spotted();
         all_spotted();
+        arrow_up();    
+        _footer();
     ?>
     </body>
 </html>

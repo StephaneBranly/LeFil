@@ -1,0 +1,27 @@
+@media all{
+    #arrow_up{
+        display: none;
+    }
+}
+@media all and (max-device-width: 480px) {
+    #arrow_up{
+        display: inline-block;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0px 0px 50px black;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 50px;
+        height: 50px;
+        z-index: 10;
+    }
+    #arrow_up i{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+        font-size: 40px; 
+    }
+}

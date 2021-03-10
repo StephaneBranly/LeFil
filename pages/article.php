@@ -32,6 +32,8 @@
             read_article($id_article);
         else
             container("Article non visible","Cet article n'existe pas, ou n'est pas visible.");
+        arrow_up();    
+        _footer();
     ?>
     </body>
 	
