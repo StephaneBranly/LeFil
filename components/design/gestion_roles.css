@@ -7,9 +7,13 @@
 #gestion_roles div{
     display: inline-block;
     margin: 15px;
-    border: 1px solid white;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(255,255,255,0.2);
     border-radius: 5px;
     padding: 15px;
+}
+#gestion_roles div:hover{
+    transform: scale(1.1);
 }
 #gestion_roles .role{
     display: inline-block;
@@ -19,7 +23,7 @@
 }
 #gestion_roles .login{
     display: inline-block;
-    color: #FFFFFF;
+    color: #26292d;
 }
 #gestion_roles .role.pvdc{
     background-color: #fffb01;

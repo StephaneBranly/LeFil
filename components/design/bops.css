@@ -66,17 +66,16 @@
 #bops_only .bops-unit{
     display: inline-block;
     text-align: justify;
-    color: #FFFFFF;
+    color: #26292d;
     padding: 10px;
-    margin-top: 10px;
     width: 90%;
-}
-#bops_only .bops-unit{
     text-align: left !important;
     margin-top: 30px;
     margin-bottom: 10px;
-    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(255,255,255,0.2);
     border-radius: 5px;
+    overflow: hidden;
 }
 #bops_only .bops-unit span{
     display: inline-block;
@@ -86,17 +85,19 @@
     width: 100%;
     padding: 10px;
     font-size: larger;
+    background-color: rgb(255, 104, 104);
+    transform: translateX(-10px) translateY(-10px);
 }
 #bops_only .bops-unit .content{
     padding-left: 10px;
     padding-top: 10px;
-    border-left: 3px solid #FFFFFF;
     text-align: justify;
 }
 #bops_only .bops-unit .date{
     text-align: right;
     width: 100%;
     margin-top: 10px;
+    font-style: oblique;
 }
 }
 @media all and (max-device-width: 480px) {
@@ -116,17 +117,14 @@
         transform: translateX(-5px) translateY(-5px);
     }
     #bops_only .bops-unit{
-        border: 4px solid #FFFFFF;
         border-radius: 15px;
         display: inline-block;
-        width: 95%;
+        width: 96%;
+        margin-left: 1%;
     }
     #bops_only{
         width: 100%;
         display: inline-block;
         font-size: larger;
-    }
-    #bops_only .bops-unit .content{
-        border-left: 6px solid #FFFFFF;
     }
 }
