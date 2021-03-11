@@ -14,8 +14,7 @@
         global $connect;
         $query_pdf = mysqli_query($connect,"SELECT lien_pdf FROM `lf_journaux` WHERE `numéro`=$numero");
         $res_pdf = mysqli_fetch_array($query_pdf);
-        // $link = ($res_pdf && $res_pdf['lien_pdf']) ? "<a href='../ressources/pdf/$res_pdf[lien_pdf]' target='_blank' class='button_pdf_dl'><i class='icon  icon-attach'></i>Numéro disponible en PDF !</a>" : "";
-        $link = "";
+        $link = ($res_pdf && $res_pdf['lien_pdf']) ? "<a href='../ressources/pdf/$res_pdf[lien_pdf]' target='_blank' class='button_pdf_dl'><i class='icon  icon-attach'></i>Numéro disponible en PDF !</a>" : "";
         echo "<div id='container_display_numero'>
         <section id='display_numero'>
         <div id='title'>Le Fil, numéro $numero $link</div>
