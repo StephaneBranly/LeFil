@@ -6,9 +6,19 @@
     display: inline-block;
     color: #FFFFFF;
 }
-
-#gestion_numeros h1{
+#numero_admin{
+    border: 2px solid white;
+    box-shadow: 0px 0px 15px #FFFFFF;
+    border-radius: 5px;
+    width: 60%;
+    display: inline-block;
+    color: #26292d;
     background-color: #FFFFFF;
+    margin-top: 30px;
+}
+
+#numero_admin h1{
+    background-color: rgb(255, 104, 104);
     color: #26292d;
 
 }
@@ -27,4 +37,69 @@
     box-shadow: 5px 5px 0px #ececec;
     transform: translateX(-5px) translateY(-5px);
     cursor: pointer;
+}
+#numero_admin .a_numero{
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    color: #26292d;
+    text-decoration: none;
+    box-shadow: 0px 0px 5px #26292d;
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+#numero_admin a{
+    text-decoration: none;
+}
+
+#numero_admin .a_numero .watch{
+	display: inline-block;
+    padding: 10px;
+	margin-right: 10px;
+	border-radius: 15px;
+    text-decoration: none;
+    background-color: #1003E4;
+    color:#FFFFFF;
+    transition: all 0.1s;
+}
+#numero_admin .a_numero .page input{
+    width: 50px;
+}
+#numero_admin .a_numero .page{
+    font-style: oblique;
+}
+#numero_admin .a_numero .watch:hover{
+    box-shadow: 0px 0px 10px #1003E4;
+}
+#numero_admin .a_numero .status_article{
+	background-color: #f0ebb7;
+	padding: 10px;
+	margin-right: 10px;
+	border-radius: 15px;
+	color: #0e0e0e;
+    display: inline-block;
+}
+#numero_admin .a_numero .status_article.correction,
+#numero_admin .a_numero .status_article.validation_pvdc,
+#numero_admin .a_numero .status_article.validation_admin
+{
+	background-color: #f9e728;
+}
+#numero_admin .a_numero .status_article.refusé_pvdc,
+#numero_admin .a_numero .status_article.refusé_admin
+{
+	background-color: #f44a4a;
+}
+#numero_admin .a_numero .status_article.brouillon{
+	background-color: #5c98dd;
+}
+#numero_admin .a_numero .status_article.attente_publication{
+	background-color: #cbf381;
+}
+#numero_admin .a_numero .status_article.publié{
+	background-color: #8ff05f;
 }

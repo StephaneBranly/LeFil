@@ -4,10 +4,23 @@
     }
     function numero_admin($id){
         global $connect;
-        $query_journal = mysqli_query($connect,"SELECT * FROM `lf_journaux` WHERE numéro = $id");
-        $journal =  mysqli_fetch_array($query_journal);
-        echo "<div class='numero_admin $journal[statut]'><h1>$journal[numéro]</h1>";
 
+
+        // MAJ des parametres du numero
+        if(isset($_POST['update'])){
+            $new_date = secure_post('date_publication');
+            if($new_date)
+                $query_upd_date = mysqli_query($connect,"UPDATE `lf_journaux` SET `date_publication` = '$new_date' WHERE `numéro`= $id");
+            $query_articles = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $id");
+            while($res = mysqli_fetch_array($query_articles))
+            {
+                $id_art = $res['identifiant'];
+                $page = secure_post("page-article-$id_art");
+                $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `page` = $page WHERE `identifiant`= $id_art");
+            }
+        }
+
+        // Partie publication article
         if(isset($_POST['publier']) && $journal['statut'] == 'en_attente')
         {
             $current_login = secure_session('user');
@@ -16,6 +29,7 @@
             while($res = mysqli_fetch_array($query_articles))
             {
                 $id_art = $res['identifiant'];
+                // Publication des articles en attente de validation, sinon, on retire le numéro de fil associé
                 if($res['statut']=='attente_publication'){
                     $query_upd = mysqli_query($connect,"UPDATE `lf_articles` SET `statut` = 'publié', `date_parution` = NOW() WHERE `identifiant`= $id_art");
                     $query_histo = mysqli_query($connect,"INSERT INTO `lf_historique`(`idarticle`, `login`, `date`, `content`,`color`,`icon`) VALUES ($id_art,'$current_login',NOW(),\"L'article a été publié\",'8ff05f','icon-note')");
@@ -27,16 +41,20 @@
                 }
             }
         }
+
+        $query_journal = mysqli_query($connect,"SELECT * FROM `lf_journaux` WHERE numéro = $id");
+        $journal =  mysqli_fetch_array($query_journal);
+        echo "<section id='numero_admin'><h1>Le Fil $journal[numéro]</h1><form action='' method='post'>";
+
         if($journal['statut']=='publié')
         {
             echo "<span class='date'>sorti le $journal[date_publication]</span>";
 
             echo "<br/>Contient les articles :";
-            echo "<ul>";
-            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro] AND statut='publié'");
+            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro] AND statut='publié' ORDER BY `page` ASC");
             while($res = mysqli_fetch_array($query))
-                echo "<li><a href='../article-$res[identifiant]'>[$res[identifiant]] - $res[titre]</a></li>";
-            echo "</ul>";
+                echo "<div class='a_numero'><span><a class='watch' href='../article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></div>";
+            echo "<button name='update' type='submit method='post'>Mettre a jour les informations</button></form>";
         }
         else
         {
@@ -44,21 +62,21 @@
             echo "Date de sortie prévue : <input name='date_publication' value='$journal[date_publication]'/>";
             echo "<br/>Articles prévus pour ce numéro :";
             echo "<div class='list_numeros'>";
-            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro]");
+            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro] ORDER BY `page` ASC");
             while($res = mysqli_fetch_array($query))
             {
                 if($res['statut']=='attente_publication')
                     $icon = "<i class='icon icon-ok-circled'></i>";
                 else
                     $icon = "<i class='icon icon-exclamation'></i>";
-                echo "<div class='a_numero'><a href='../edit-article-$res[identifiant]'>$icon [$res[identifiant]] - $res[titre] ($res[statut])</a></div>";
+                echo "<div class='a_numero'><span><div class='status_article $res[statut]'>$icon $res[statut]</div><a class='watch' href='../edit-article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></div>";
             }
             echo "</div>";
-            echo "<button type='submit'>Mettre a jour les informations</button>";
+            echo "<button name='update' type='submit method='post'>Mettre a jour les informations</button></form>";
             echo "<form method='post' action=''><p>Seuls les articles avec le statut 'attente_publication' (<i class='icon icon-ok-circled'></i>) seront publiés sur le numéro. Les autres articles (<i class='icon icon-exclamation'></i>) devront se rattacher à un prochain numéro.</p>Validation : <input required name='validation' type='checkbox'/>
             <button type='submit' name='publier'>Publier le journal</button></form>";
         }
-        echo "</div>";
+        echo "</section>";
     }
 
     function gestion_numero()
@@ -80,7 +98,7 @@
         while($res = mysqli_fetch_array($query))
             load_numero_admin($res);
         echo "</select><button type='submit'>Charger le numéro</button>
-        </form>";
+        </form></section>";
         
         if(isset($_GET['num']))
         {

@@ -1,1 +1,3 @@
 DROP TABLE `lf_écrit`;
+
+ALTER TABLE `lf_articles` ADD `page` INT NOT NULL DEFAULT '1' AFTER `statut`; 
