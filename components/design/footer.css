@@ -2,7 +2,7 @@
 footer{
     background-color: #FFFFFF;
     bottom: 0px;
-    height: 20px;
+    height: 60px;
     width: 100%;
 }
 
@@ -12,7 +12,7 @@ footer{
     height: 50px;
     margin-top: 150px;
     transform: rotate(180deg);
-    bottom: 20px;
+    bottom: 60px;
     width: 100%;
   }
 #footer_wave_container .wave {

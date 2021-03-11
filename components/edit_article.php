@@ -142,7 +142,10 @@
         $article_pour = (!$res_article['id_concours']=="" && !$res_article['numero_journal']) ? "<option name='horsserie' value='horsserie' selected>Hors-série</option>" : "<option name='horsserie' value='horsserie'>Hors-série</option>" ;
         if(secure_session('is_redacteur') || secure_session('is_admin'))
         {
-            $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux` WHERE statut='en_attente'");
+            if($res_article['statut']=='publié')
+                $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux`");
+            else
+                $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux` WHERE statut='en_attente'");
             while($res = mysqli_fetch_array($query3))
                 $article_pour .= ($res_article['numero_journal']==$res['numéro']) ?  "<option name='$res[numéro]' value='$res[numéro]' selected>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>" : 
                 "<option name='$res[numéro]' value='$res[numéro]'>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>";
