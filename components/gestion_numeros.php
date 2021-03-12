@@ -51,9 +51,12 @@
             echo "<span class='date'>sorti le $journal[date_publication]</span>";
 
             echo "<br/>Contient les articles :";
-            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro] AND statut='publié' ORDER BY `page` ASC");
+            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` LEFT JOIN `lf_rubriques` ON lf_articles.id_rubrique = lf_rubriques.identifiant_rubrique WHERE numero_journal = $journal[numéro] AND statut='publié' ORDER BY `page` ASC");
             while($res = mysqli_fetch_array($query))
-                echo "<div class='a_numero'><span><a class='watch' href='../article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></div>";
+            {  
+                $rubrique = $res['rubrique'] ? "<span class='rubrique'>$res[rubrique]</span>": "";
+                echo "<div class='a_numero'><span><a class='watch' href='../article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span>$rubrique<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></span></div>";
+            }
             echo "<button name='update' type='submit method='post'>Mettre a jour les informations</button></form>";
         }
         else
@@ -62,14 +65,15 @@
             echo "Date de sortie prévue : <input name='date_publication' value='$journal[date_publication]'/>";
             echo "<br/>Articles prévus pour ce numéro :";
             echo "<div class='list_numeros'>";
-            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE numero_journal = $journal[numéro] ORDER BY `page` ASC");
+            $query = mysqli_query($connect,"SELECT * FROM `lf_articles` LEFT JOIN `lf_rubriques` ON lf_articles.id_rubrique = lf_rubriques.identifiant_rubrique WHERE numero_journal = $journal[numéro] ORDER BY `page` ASC");
             while($res = mysqli_fetch_array($query))
             {
                 if($res['statut']=='attente_publication')
                     $icon = "<i class='icon icon-ok-circled'></i>";
                 else
                     $icon = "<i class='icon icon-exclamation'></i>";
-                echo "<div class='a_numero'><span><div class='status_article $res[statut]'>$icon $res[statut]</div><a class='watch' href='../edit-article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></div>";
+                $rubrique = $res['rubrique'] ? "<span class='rubrique'>$res[rubrique]</span>": "";
+                echo "<div class='a_numero'><span><div class='status_article $res[statut]'>$icon $res[statut]</div><a class='watch' href='../edit-article-$res[identifiant]'><i class='icon icon-eye'></i></a></span>$res[titre]<span>$rubrique<span class='page'>p.<input type='number' value='$res[page]' name='page-article-$res[identifiant]'/></span></span></div>";
             }
             echo "</div>";
             echo "<button name='update' type='submit method='post'>Mettre a jour les informations</button></form>";
