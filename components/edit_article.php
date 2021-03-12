@@ -127,17 +127,17 @@
         $liste_genre = ($res_article['id_genre']=="") ? "<option name='-' value='' selected>---</option>" : "<option name='-'>---</option>";
         $query0 = mysqli_query($connect,"SELECT genre FROM `lf_genre` WHERE etat=1");
         while($res = mysqli_fetch_array($query0))
-            $liste_genre .= ($res_article['id_genre']==$res['genre']) ? "<option name='$res[genre]' value='$res[genre]' selected>$res[genre]</option>" : "<option name='$res[genre]' value='$res[genre]'>$res[genre]</option>";
+            $liste_genre .= ($res_article['id_genre']==$res['genre']) ? "<option name=\"$res[genre]\" value=\"$res[genre]\" selected>$res[genre]</option>" : "<option name=\"$res[genre]\" value=\"$res[genre]\">$res[genre]</option>";
         
         $liste_rubriques = ($res_article['id_rubrique']=="") ? "<option name='-' value='' selected>---</option>" : "<option name='-'>---</option>" ;
         $query1 = mysqli_query($connect,"SELECT rubrique, identifiant_rubrique FROM `lf_rubriques` WHERE etat=1");
         while($res = mysqli_fetch_array($query1))
-            $liste_rubriques .= ($res_article['id_rubrique']==$res['identifiant_rubrique']) ? "<option name='$res[rubrique]' value='$res[identifiant_rubrique]' selected>$res[rubrique]</option>" : "<option name='$res[rubrique]' value='$res[identifiant_rubrique]'>$res[rubrique]</option>";   
-
+            $liste_rubriques .= ($res_article['id_rubrique']==$res['identifiant_rubrique']) ? "<option name=\"$res[rubrique]\" value=\"$res[identifiant_rubrique]\" selected>$res[rubrique]</option>" : "<option name=\"$res[rubrique]\" value=\"$res[identifiant_rubrique]\">$res[rubrique]</option>";   
+ 
         $liste_registres = ($res_article['id_registre']=="") ? "<option name='-' value='' selected>---</option>" : "<option name='-'>---</option>" ;
         $query2 = mysqli_query($connect,"SELECT registre FROM `lf_registres` WHERE etat=1");
         while($res = mysqli_fetch_array($query2))
-            $liste_registres .= ($res_article['id_registre']==$res['registre']) ? "<option name='$res[registre]' value='$res[registre]' selected>$res[registre]</option>" : "<option name='$res[registre]' value='$res[registre]'>$res[registre]</option>";
+            $liste_registres .= ($res_article['id_registre']==$res['registre']) ? "<option name=\"$res[registre]\" value=\"$res[registre]\" selected>$res[registre]</option>" : "<option name=\"$res[registre]\" value=\"$res[registre]\">$res[registre]</option>";
 
         $article_pour = (!$res_article['id_concours']=="" && !$res_article['numero_journal']) ? "<option name='horsserie' value='horsserie' selected>Hors-série</option>" : "<option name='horsserie' value='horsserie'>Hors-série</option>" ;
         if(secure_session('is_redacteur') || secure_session('is_admin'))
@@ -147,15 +147,15 @@
             else
                 $query3 = mysqli_query($connect,"SELECT numéro, date_publication FROM `lf_journaux` WHERE statut='en_attente'");
             while($res = mysqli_fetch_array($query3))
-                $article_pour .= ($res_article['numero_journal']==$res['numéro']) ?  "<option name='$res[numéro]' value='$res[numéro]' selected>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>" : 
-                "<option name='$res[numéro]' value='$res[numéro]'>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>";
+                $article_pour .= ($res_article['numero_journal']==$res['numéro']) ?  "<option name=\"$res[numéro]\" value=\"$res[numéro]\" selected>Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>" : 
+                "<option name=\"$res[numéro]\" value=\"$res[numéro]\">Le Fil $res[numéro] (publication prévue le $res[date_publication])</option>";
                 $query3 = mysqli_query($connect,"SELECT numéro, date_sortie FROM `lf_journaux` WHERE statut='brouillon'");
         }
 
         $query4 = mysqli_query($connect,"SELECT semestre_édition FROM `lf_concours` WHERE article_gagnant IS NULL");
         while($res = mysqli_fetch_array($query4))
-            $article_pour .= ($res_article['id_concours']==$res['semestre_édition'] && !$res_article['numero_journal']) ?  "<option name='$res[semestre_édition]' value='$res[semestre_édition]' selected>Concours $res[semestre_édition]</option>" : 
-            "<option name='$res[semestre_édition]' value='$res[semestre_édition]'>Concours $res[semestre_édition]</option>";
+            $article_pour .= ($res_article['id_concours']==$res['semestre_édition'] && !$res_article['numero_journal']) ?  "<option name=\"$res[semestre_édition]\" value=\"$res[semestre_édition]\" selected>Concours $res[semestre_édition]</option>" : 
+            "<option name=\"$res[semestre_édition]\" value=\"$res[semestre_édition]\">Concours $res[semestre_édition]</option>";
                 
 
         if($status=="brouillon"){
@@ -240,8 +240,8 @@
         echo "<form action='' method='post' id='edit_form'>";
         echo "<h1 onclick='toggle_section(1);'>L'article<i id='section1_icon' class='icon icon_open_close icon-up-open'></i></h1>";
         echo "<div class='togglable_section' id='section1'>
-        <div class='input'><h2>Titre : </h2><input $disabled type='text' name='titre' id='titre' value='$res_article[titre]'/></div>
-        <div class='input'><h2>Sous-titre : </h2><input $disabled type='text' name='soustitre' id='soustitre' value='$res_article[sous_titre]'/></div>
+        <div class='input'><h2>Titre : </h2><input $disabled type='text' name='titre' id='titre' value=\"$res_article[titre]\"/></div>
+        <div class='input'><h2>Sous-titre : </h2><input $disabled type='text' name='soustitre' id='soustitre' value=\"$res_article[sous_titre]\"/></div>
         <h2>Contenu :</h2>
         <textarea class='contenu' $disabled name='contenu' onkeypress='update_preview();' id='contenu'>$res_article[texte_contenu]</textarea>
         <h2>Prévisualisation de l'article</h2>
@@ -257,7 +257,7 @@
         echo "<div class='togglable_section' id='section2'>
         <h2>Description courte :</h2>
         <textarea $disabled class='courte_description' name='courte_description'>$res_article[courte_description]</textarea>
-        <div class='input'><h2>URL image couverture : </h2><input $disabled type='text' name='image_couverture' id='image_couverture' value='$res_article[image_couverture]'/></div>
+        <div class='input'><h2>URL image couverture : </h2><input $disabled type='text' name='image_couverture' id='image_couverture' value=\"$res_article[image_couverture]\"/></div>
         <h2>Genre : </h2><select name='genre' $disabled>$liste_genre</select>
         <h2>Registre : </h2><select name='registre' $disabled>$liste_registres</select>
         </div>";
