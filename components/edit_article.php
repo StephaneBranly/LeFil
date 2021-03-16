@@ -133,7 +133,7 @@
         $query1 = mysqli_query($connect,"SELECT rubrique, identifiant_rubrique FROM `lf_rubriques` WHERE etat=1");
         while($res = mysqli_fetch_array($query1))
             $liste_rubriques .= ($res_article['id_rubrique']==$res['identifiant_rubrique']) ? "<option name=\"$res[rubrique]\" value=\"$res[identifiant_rubrique]\" selected>$res[rubrique]</option>" : "<option name=\"$res[rubrique]\" value=\"$res[identifiant_rubrique]\">$res[rubrique]</option>";   
- 
+
         $liste_registres = ($res_article['id_registre']=="") ? "<option name='-' value='' selected>---</option>" : "<option name='-'>---</option>" ;
         $query2 = mysqli_query($connect,"SELECT registre FROM `lf_registres` WHERE etat=1");
         while($res = mysqli_fetch_array($query2))
