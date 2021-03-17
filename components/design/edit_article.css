@@ -1,6 +1,6 @@
 #new_article .link_feed{
     display: inline-block;
-    height: 100px;
+    height: 20px;
     width: 100%;
 }
 #new_article .link_feed span{
@@ -8,7 +8,7 @@
     width: 0px;
     border-left: 10px dotted #ececec;
     transform: translateX(-5px);
-    height: 100px;
+    height: 20px;
 }
 #new_article .message{
     display: inline-block;

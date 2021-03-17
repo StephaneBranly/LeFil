@@ -124,4 +124,7 @@
     #display_numero #right_side #article_header{
         border-radius: 0px;
     }
+    .button_pdf_dl{
+        font-size: xx-large;
+    }
 }

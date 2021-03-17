@@ -25,7 +25,7 @@
             echo "<section id='content_mes-articles'>";
             $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE `auteur`='$user' ORDER BY `date_parution` DESC");
             while($res_article = mysqli_fetch_array($query_articles)){
-                article_mini($res_article['identifiant'],own_article($res_article['identifiant']));
+                article_mini($res_article['identifiant'],own_article($res_article['identifiant']),own_article($res_article['identifiant']));
             }
             echo "</section>";
 
@@ -35,7 +35,7 @@
                 echo "<section id='content_correction' style=\"display: none;\">";
                 $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles`  WHERE statut='correction' ORDER BY `date_parution` DESC");
                 while($res_article = mysqli_fetch_array($query_articles)){
-                    article_mini($res_article['identifiant'],1);
+                    article_mini($res_article['identifiant'],1,1);
                 }
                 echo "</section>";
             }
@@ -46,14 +46,14 @@
                 echo "<section id='content_admin' style=\"display: none;\">";
                 $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE statut='validation_admin' OR statut='refusé_admin' ORDER BY `date_parution` DESC ");
                 while($res_article = mysqli_fetch_array($query_articles)){
-                    article_mini($res_article['identifiant'],1);
+                    article_mini($res_article['identifiant'],1,1);
                 }
                 echo "</section>";
 
                 echo "<section id='content_attente_publication' style=\"display: none;\">";
                 $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE statut='attente_publication' ORDER BY `date_parution` DESC ");
                 while($res_article = mysqli_fetch_array($query_articles)){
-                    article_mini($res_article['identifiant'],1);
+                    article_mini($res_article['identifiant'],1,1);
                 }
                 echo "</section>";
             }
@@ -64,7 +64,7 @@
                  echo "<section id='content_pvdc' style=\"display: none;\">";
                  $query_articles = mysqli_query($connect,"SELECT `identifiant` FROM `lf_articles` WHERE statut='validation_pvdc' OR statut='refusé_pvdc' ORDER BY `date_parution` DESC ");
                  while($res_article = mysqli_fetch_array($query_articles)){
-                     article_mini($res_article['identifiant'],1);
+                     article_mini($res_article['identifiant'],1,1);
                  }
                  echo "</section>";
              }

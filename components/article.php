@@ -17,22 +17,25 @@ function can_article_be_read($id_article)
     return 0;
 }
 
-function article_mini($id_article, $show_status = false){
+function article_mini($id_article, $show_status = false, $edit_link = false){
     global $connect;
-    $query = mysqli_query($connect,"SELECT * FROM `lf_articles` WHERE `identifiant`=$id_article");
+    $query = mysqli_query($connect,"SELECT * FROM `lf_articles` LEFT JOIN `lf_rubriques` ON lf_articles.id_rubrique = lf_rubriques.identifiant_rubrique WHERE `identifiant`=$id_article");
     $res = mysqli_fetch_array($query);
-    
-    
+
     if(can_article_be_read($id_article)){
-        echo "<a href='../edit-article-$id_article' class='link-miniarticle'><section class='miniarticle'>";
-        if($show_status){
+        $edit = $edit_link ? "edit-" : "";
+        $rubrique = $res['rubrique'] ? "<div class='rubrique'>$res[rubrique]</div>": "";
+        echo "<a href='../".$edit."article-$id_article' class='link-miniarticle'><section class='miniarticle'>";
+        echo "<div class='header-article'><h1>$res[titre]</h1></div>";
+        echo "<div class='sub-section'>";
+        if($show_status)
             echo "<div class='status_article $res[statut]'>$res[statut]</div>";
-        }
-        echo "<div class='header-article'><h1>$res[titre]</h1><h2>$res[sous_titre]</h2></div>";
-        if($show_status){
-            echo "<div class='last_update'>$res[date_parution]</div>";
-        }
-        echo "</section></a>";
+        echo "<h2>$res[sous_titre]</h2>";
+        if($show_status)
+            echo "<div class='right'>$rubrique<div class='last_update'>$res[date_parution]</div></div>";
+        else
+        echo "$rubrique";
+        echo "</div></section></a>";
     }
 }
 
